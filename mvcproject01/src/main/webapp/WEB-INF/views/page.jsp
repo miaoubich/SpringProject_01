@@ -24,7 +24,7 @@
 <meta name="google-site-verification"
 	content="37Tru9bxB3NrqXCt6JT5Vx8wz2AJQ0G4TkC-j8WL3kw">
 
-<title>Shop Homepage</title>
+<title>Shopping Place</title>
 
 <meta name="description" content="">
 
