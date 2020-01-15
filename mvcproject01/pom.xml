@@ -24,6 +24,13 @@
 
 	<dependencies>
 
+		<!-- Linking back to frontend project -->
+		<dependency>
+			<groupId>net.darinlina</groupId>
+			<artifactId>mvcproject01backend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- javaee-api -->
 		<dependency>
 			<groupId>javax</groupId>

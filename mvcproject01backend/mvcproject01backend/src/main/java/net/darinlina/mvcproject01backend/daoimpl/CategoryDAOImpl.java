@@ -3,9 +3,12 @@ package net.darinlina.mvcproject01backend.daoimpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import net.darinlina.mvcproject01backend.dao.CategoryDAO;
 import net.darinline.mvcproject01backend.dto.Category;
 
+@Repository("categoryDAO")
 public class CategoryDAOImpl implements CategoryDAO {
 
 	private static List<Category> categories = new ArrayList<>();
@@ -20,23 +23,23 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 		categories.add(category);
 
-		category = new Category();
+		Category category1 = new Category();
 
-		category.setId(2);
-		category.setName("Drinks");
-		category.setDescription("Bio drinks !");
-		category.setImageURL("CAT_2.png");
+		category1.setId(2);
+		category1.setName("Drinks");
+		category1.setDescription("Bio drinks !");
+		category1.setImageURL("CAT_2.png");
 
-		categories.add(category);
+		categories.add(category1);
 
-		category = new Category();
+		Category category2 = new Category();
 
-		category.setId(3);
-		category.setName("Beverage");
-		category.setDescription("Bio other Beverages !");
-		category.setImageURL("CAT_3.png");
+		category2.setId(3);
+		category2.setName("Beverage");
+		category2.setDescription("Bio other Beverages !");
+		category2.setImageURL("CAT_3.png");
 
-		categories.add(category);
+		categories.add(category2);
 	}
 
 	@Override
