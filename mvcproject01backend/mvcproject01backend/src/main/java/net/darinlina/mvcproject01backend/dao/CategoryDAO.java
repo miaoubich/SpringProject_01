@@ -7,5 +7,6 @@ import net.darinline.mvcproject01backend.dto.Category;
 public interface CategoryDAO {
 
 	List<Category> List();
-	CategoryDAO get(int id);
+
+	Category get(int id);
 }

@@ -38,7 +38,7 @@
 		<%@include file="./shared/navbar.jsp"%>
 
 		<div class="content">
-		
+
 			<!-- WHen click logo load Page Content -->
 			<c:if test="${userClickHome == true}">
 				<%@include file="home.jsp"%>
@@ -53,9 +53,15 @@
 			<c:if test="${userClickContact == true}">
 				<%@include file="contact.jsp"%>
 			</c:if>
-			
+
+			<!-- Load only when click View Products -->
+			<c:if
+				test="${userClickAllProducts == true or userClickCategoryProducts == true}">
+				<%@include file="listProducts.jsp"%>
+			</c:if>
+
 		</div>
-		
+
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 
@@ -63,6 +69,7 @@
 		<script src="${js}/jquery.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.bundle.min.js"></script>
+		<script src="${js}/popper.min.js"></script>
 		<!-- customize javascript -->
 		<script src="${js}/myapp.js"></script>
 
