@@ -1,5 +1,7 @@
 package net.darinlina.mvcproject01backend;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -23,14 +25,44 @@ public class CategoryTest {
 		categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
 	}
 
-	@Test
+//	@Test
 	public void testAddCategory() {
 		category = new Category();
 
-		category.setName("FOOD");
-		category.setDescription("This is what call it deleciouse");
-		category.setImageURL("CAT_1.png");
+		category.setName("FRUITS");
+		category.setDescription("It is a Pineapple!");
+		category.setImageURL("CAT_3.png");
 
 		Assert.assertTrue(categoryDAO.add(category));
 	}
+
+//	@Test
+	public void testgetCategory() {
+
+		category = categoryDAO.get(2);
+		System.out.println("category.getName(): " + category.getName());
+		assertEquals("Beverages", category.getName());
+	}
+
+//	@Test
+	public void testEditCategory() {
+
+		category = categoryDAO.get(2);
+		category.setName("DRINKS");
+		Assert.assertTrue(categoryDAO.update(category));
+	}
+
+//	@Test
+	public void testDeleteCategory() {
+
+		category = categoryDAO.get(2);
+		Assert.assertTrue(categoryDAO.delete(category));
+	}
+
+	@Test
+	public void testGetList() {
+		System.out.println("categoryDAO.List(): " + categoryDAO.List().size());
+		assertEquals(categoryDAO.List().size(), 2);
+	}
+
 }

@@ -1,9 +1,9 @@
 package net.darinlina.mvcproject01backend.daoimpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,62 +12,59 @@ import net.darinlina.mvcproject01backend.dao.CategoryDAO;
 import net.darinline.mvcproject01backend.dto.Category;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private static List<Category> categories = new ArrayList<>();
-
-	static {
-		Category category = new Category();
-
-		category.setId(1);
-		category.setName("Food");
-		category.setDescription("Bio hrana !");
-		category.setImageURL("CAT_1.png");
-
-		categories.add(category);
-
-		Category category1 = new Category();
-
-		category1.setId(2);
-		category1.setName("Drinks");
-		category1.setDescription("Bio drinks !");
-		category1.setImageURL("CAT_2.png");
-
-		categories.add(category1);
-
-		Category category2 = new Category();
-
-		category2.setId(3);
-		category2.setName("Beverage");
-		category2.setDescription("Bio other Beverages !");
-		category2.setImageURL("CAT_3.png");
-
-		categories.add(category2);
-	}
-
 	@Override
 	public List<Category> List() {
-		return categories;
+
+		String selectActiveCategory = "FROM Category WHERE Active = :active";// Category is the Entity class name not
+																				// the database table
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCategory);
+		query.setParameter("active", true);
+
+		return query.getResultList();
 	}
 
+	/*
+	 * For getting a single category based on its is
+	 */
 	@Override
 	public Category get(int id) {
-
-		for (Category category : categories) {
-			if (category.getId() == id)
-				return category;
-		}
-		return null;
+		// fetch the id of the class Category from database
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
 	}
 
 	@Override
-	@Transactional
 	public boolean add(Category category) {
 		try {// Add category to database
 			sessionFactory.getCurrentSession().persist(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean update(Category category) {
+		try {// edit category to database
+			sessionFactory.getCurrentSession().update(category);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delete(Category category) {
+		try {
+			category.setActive(false);
+			sessionFactory.getCurrentSession().update(category);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

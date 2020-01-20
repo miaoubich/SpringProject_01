@@ -6,9 +6,14 @@ import net.darinline.mvcproject01backend.dto.Category;
 
 public interface CategoryDAO {
 
-	boolean add(Category category);
+	Category get(int id);
 
 	List<Category> List();
 
-	Category get(int id);
+	boolean add(Category category);
+
+	boolean update(Category category);
+
+	boolean delete(Category category);
+
 }
