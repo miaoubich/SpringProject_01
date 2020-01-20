@@ -25,13 +25,13 @@ public class CategoryTest {
 		categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
 	}
 
-//	@Test
+	@Test
 	public void testAddCategory() {
 		category = new Category();
 
-		category.setName("FRUITS");
-		category.setDescription("It is a Pineapple!");
-		category.setImageURL("CAT_3.png");
+		category.setName("DESSERT");
+		category.setDescription("Pudding od vanilja!");
+		category.setImageURL("CAT_4.png");
 
 		Assert.assertTrue(categoryDAO.add(category));
 	}
@@ -59,7 +59,7 @@ public class CategoryTest {
 		Assert.assertTrue(categoryDAO.delete(category));
 	}
 
-	@Test
+//	@Test
 	public void testGetList() {
 		System.out.println("categoryDAO.List(): " + categoryDAO.List().size());
 		assertEquals(categoryDAO.List().size(), 2);
