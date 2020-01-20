@@ -18,15 +18,15 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<spring.version>5.2.1.RELEASE</spring.version>
-		<hibersnate.version>5.2.7.Final</hibersnate.version>
+		<hibernate.version>5.2.7.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
-
+	<!-- JUNIT version 4.12 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -43,6 +43,7 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		
 		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -54,7 +55,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>${hibersnate.version}</version>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<!-- database connection pooling -->
