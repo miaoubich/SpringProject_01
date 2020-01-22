@@ -1,3 +1,5 @@
+DROP ALL OBJECTS;
+
 CREATE TABLE category (
 	id IDENTITY,
 	name VARCHAR(50),
@@ -8,13 +10,14 @@ CREATE TABLE category (
 	CONSTRAINT pk_category_id PRIMARY KEY (id)
 );
 
-DROP ALL OBJECTS;
 
-INSERT INTO category(name, description, image_url, is_active) VALUES ('Toys','It is a default description for this product', 'Cat_01', true);
-INSERT INTO category(name, description, image_url, is_active) VALUES ('Cloths','It is a default description for this product', 'Cat_02', true);
-INSERT INTO category(name, description, image_url, is_active) VALUES ('Food less 2 years','It is a default description for this product', 'Cat_03', false);
-INSERT INTO category(name, description, image_url, is_active) VALUES ('Food Children','It is a default description for this product', 'Cat_04', true);
-INSERT INTO category(name, description, image_url, is_active) VALUES ('Cosmetic','It is a default description for this product', 'Cat_05', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Dolls','It is a default description for this product', 'Cat_01', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Action Figures','It is a default description for this product', 'Cat_02', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Vehicles','It is a default description for this product', 'Cat_03', false);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Games and Puzzles','It is a default description for this product', 'Cat_04', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Electronic Toy for young','It is a default description for this product', 'Cat_05', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Babies Toys','It is a default description for this product', 'Cat_05', true);
+INSERT INTO category(name, description, image_url, is_active) VALUES ('Other Toys','It is a default description for this product', 'Cat_05', true);
 
 CREATE TABLE user_detail(
 	id IDENTITY,
@@ -62,3 +65,14 @@ CREATE TABLE product(
 	CONSTRAINT fk_product_category_id FOREIGN KEY (category_id) REFERENCES category (id),
 	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail (id)
 );
+
+INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDABC123DEFX', 'FROZEN DOLL ELSA', 'Disney', 'The principle character from Frozen II The movie!', 25, 5, true, 1, 3, 0, 0 );
+INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDDEF123DEFX', 'TMNT Turtles Roleplay set Donatello', 'Sony', 'Donatello one of the ninja turtle members!', 22, 20, true, 2, 1, 0, 0 );
+INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDPQR123WGTX', 'Billy', 'Dens', 'Board game Beaver Billy. For 1-4 players age 4+. The duration of the game is about 20 minutes.', 20, 5, true, 4, 3, 0, 0 );
+INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDMNO123PQRX', 'Didactic puzzle', 'Dens', 'A didactic puzzle to help your child practice precision and concentration by inserting different shapes into specific openings.', 10, 30, true, 6, 4, 0, 0 );
+INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
+VALUES ('PRDABCXYZDEFX', 'HAS: NERF N STRIKE ELITE', 'Nerf', 'Nerf launcher. Fully automatic 27-meter blaster. Suitable for 8 years.', 55, 5, true, 7, 1, 0, 0 );
