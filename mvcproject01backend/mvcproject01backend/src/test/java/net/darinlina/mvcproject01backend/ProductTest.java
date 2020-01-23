@@ -37,8 +37,8 @@ public class ProductTest {
 
 		Assert.assertTrue(productDAO.add(product));
 
-		product = productDAO.get(7);
-		product.setName("BEBE");
+		product = productDAO.get(8);
+		product.setActive(false);
 		Assert.assertTrue(productDAO.update(product));
 
 		// Fetch the list
@@ -56,14 +56,19 @@ public class ProductTest {
 
 //	@Test
 	public void listOfActiveProductTest() {
-		Assert.assertEquals(productDAO.listActiveProducts().size(), 6);
+		Assert.assertEquals(productDAO.listActiveProducts().size(), 5);
 		System.out.println("Active product liste size has: " + productDAO.listActiveProducts().size() + " product(s)");
 	}
 
-	@Test
+//	@Test
 	public void listActiveProductsByCategory() {
-		Assert.assertEquals(productDAO.listActiveProductsByCategory(2).size(), 3);
-		System.out.println("Lis of tActive Products By Category: " + productDAO.listActiveProductsByCategory(2).size()
+		Assert.assertEquals(productDAO.listActiveProductsByCategory(2).size(), 2);
+		System.out.println("Lis of Active Products By Category: " + productDAO.listActiveProductsByCategory(2).size()
 				+ " product(s)");
+	}
+	
+	@Test
+	public void listOfLsterProducts() {
+		Assert.assertEquals(productDAO.getLatestActiveProducts(4).size(), 4);
 	}
 }
