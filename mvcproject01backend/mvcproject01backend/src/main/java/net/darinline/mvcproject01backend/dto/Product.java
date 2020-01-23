@@ -27,7 +27,7 @@ public class Product {
 	private int categoryId;
 	@Column(name = "supplier_id")
 	private int supplierId;
-	private int purchase;
+	private int purchases;
 	private int views;
 
 	public Product() {
@@ -114,12 +114,12 @@ public class Product {
 		this.supplierId = supplierId;
 	}
 
-	public int getPurchase() {
-		return purchase;
+	public int getPurchases() {
+		return purchases;
 	}
 
-	public void setPurchase(int purchase) {
-		this.purchase = purchase;
+	public void setPurchase(int purchases) {
+		this.purchases = purchases;
 	}
 
 	public int getViews() {

@@ -25,7 +25,7 @@ public class CategoryTest {
 		categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
 	}
 
-	@Test
+//	@Test
 	public void testAddCategory() {
 		category = new Category();
 
@@ -59,7 +59,7 @@ public class CategoryTest {
 		Assert.assertTrue(categoryDAO.delete(category));
 	}
 
-//	@Test
+	@Test
 	public void testGetList() {
 		System.out.println("categoryDAO.List(): " + categoryDAO.List().size());
 		assertEquals(categoryDAO.List().size(), 2);
