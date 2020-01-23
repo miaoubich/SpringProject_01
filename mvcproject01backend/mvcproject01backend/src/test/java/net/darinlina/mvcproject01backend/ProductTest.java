@@ -54,15 +54,15 @@ public class ProductTest {
 		Assert.assertTrue(productDAO.update(product));
 	}
 
-	@Test
+//	@Test
 	public void listOfActiveProductTest() {
 		Assert.assertEquals(productDAO.listActiveProducts().size(), 6);
 		System.out.println("Active product liste size has: " + productDAO.listActiveProducts().size() + " product(s)");
 	}
 
-//	@Test
+	@Test
 	public void listActiveProductsByCategory() {
-		Assert.assertEquals(productDAO.listActiveProductsByCategory(2).size(), 2);
+		Assert.assertEquals(productDAO.listActiveProductsByCategory(2).size(), 3);
 		System.out.println("Lis of tActive Products By Category: " + productDAO.listActiveProductsByCategory(2).size()
 				+ " product(s)");
 	}
