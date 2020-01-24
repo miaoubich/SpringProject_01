@@ -69,7 +69,9 @@
 		<script src="${js}/jquery.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.bundle.min.js"></script>
-		<script src="${js}/popper.min.js"></script>
+<%-- 		<script src="${js}/popper.min.js"></script> --%>
+		<!-- DataTables plugin-->
+		<script src="${js}/jquery.dataTables.js"></script>
 		<!-- customize javascript -->
 		<script src="${js}/myapp.js"></script>
 
