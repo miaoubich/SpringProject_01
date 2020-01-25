@@ -26,6 +26,14 @@
 
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap fontawesome css -->
+<link href="${css}/fontawesome.css" rel="stylesheet">
+<!-- Bootstrap table css -->
+<%-- <link href="${css}/bootstrap-table.min.css" rel="stylesheet"> --%>
+<!-- dataTables for bs4 css -->
+<!-- <link rel="stylesheet" type="text/css" -->
+<!-- 	href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.css" /> -->
+<link href="${css}/bs4-dataTables.css" rel="stylesheet">
 <!-- bootstrap css theme -->
 <link href="${css}/bootstrap.cerulean.theme.css" rel="stylesheet">
 <!-- Custom styles for this template -->
@@ -65,13 +73,17 @@
 		<!-- Footer -->
 		<%@include file="./shared/footer.jsp"%>
 
-		<!-- core jquery -->
+		<!-- core jquery v3.4.1-->
 		<script src="${js}/jquery.min.js"></script>
 		<!-- Bootstrap core JavaScript -->
-		<script src="${js}/bootstrap.bundle.min.js"></script>
-<%-- 		<script src="${js}/popper.min.js"></script> --%>
-		<!-- DataTables plugin-->
-		<script src="${js}/jquery.dataTables.js"></script>
+		<script src="${js}/bootstrap.min.js"></script>
+		<script src="${js}/popper.min.js"></script>
+		<!-- bootstrap table plugin-->
+		<%-- 		<script src="${js}/bootstrap-table.min.js"></script> --%>
+		<!-- dataTable for bs4 -->
+		<script src="${js}/bs4-dataTables.js"></script>
+		<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.js"></script> -->
+
 		<!-- customize javascript -->
 		<script src="${js}/myapp.js"></script>
 

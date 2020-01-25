@@ -34,18 +34,25 @@
 
 			<div class="row">
 
-				<div class="col-xs-12">
+				<div class="col-sm-12">
+					<!-- 				<div class="container mt-2 mb-2"> -->
 
-					<table id="productListTable"
-						class="table table-striped">
+					<table id="productListTable" class="table table-striped"
+						data-toggle="table" data-pagination="true" data-search="true"
+						style="width: 100%">
 
 						<thead>
 							<tr>
-								<th>ID</th>
-								<th>Name</th>
+								<th data-sortable="true">ID</th>
+								<th data-sortable="true">Name</th>
 							</tr>
 						</thead>
-
+						<tfoot>
+							<tr>
+								<th data-sortable="true">ID</th>
+								<th data-sortable="true">Name</th>
+							</tr>
+						</tfoot>
 					</table>
 
 				</div>
