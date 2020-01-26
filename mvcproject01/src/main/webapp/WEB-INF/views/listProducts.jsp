@@ -43,14 +43,15 @@
 
 						<thead>
 							<tr>
-								<th data-sortable="true">ID</th>
-								<th data-sortable="true">Name</th>
+<!-- 							<th data-sortable="true">ID</th> -->
+								<th>ID</th>
+								<th>Name</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th data-sortable="true">ID</th>
-								<th data-sortable="true">Name</th>
+								<th>ID</th>
+								<th>Name</th>
 							</tr>
 						</tfoot>
 					</table>
