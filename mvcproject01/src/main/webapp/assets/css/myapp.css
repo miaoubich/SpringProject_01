@@ -31,3 +31,8 @@ footer {
 	margin: 0;
 	min-width: 100%;
 }
+
+.dataTableImg{
+	width: 100px;
+	height: 100px;
+}

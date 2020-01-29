@@ -21,18 +21,60 @@ $(function() {
 	}
 
 	// code for jquery table
-	// create a dataset
-	var products = [ [ '1', 'ABC' ], [ '2', 'SDC' ], [ '3', 'FGH' ],
-			[ '4', 'JKL' ], [ '5', 'QWE' ], [ '6', 'RTY' ], [ '7', 'UIO' ],
-			[ '8', 'PZX' ], [ '9', 'CVB' ], [ '10', 'NM' ], [ '11', 'KMY' ] ];
-
 	var $table = $('#productListTable');
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
-	if ($table.length){
+	if ($table.length) {
+
+		var jsonUrl = '';
+		if (window.categoryId == '') {
+			jsonUrl = window.contextRoot + '/json/data/all/products';
+		} else {
+			jsonUrl = window.contextRoot + '/json/data/category/' + window.categoryId
+					+ '/products'
+		}
+
 		$table.DataTable({
-//			lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10 Records','All']],
-//			pageLength: 3,
-			data: products
+			// lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10
+			// Records','All']],
+			// pageLength: 3,
+			ajax:{
+				url: jsonUrl,
+				dataSrc: ''
+			},
+			columns: [
+				{
+					data: 'code',
+					mRender: function (data, type, row){
+						return '<img src="'+window.contextRoot+'/resources/images/'+data+'.jpg" class="dataTableImg"/>';
+					}
+				},
+				{
+					data: 'name'
+				},
+				{
+					data: 'brand'
+				},
+				{
+					data: 'unitPrice',
+					mRender: function(data, type, row){
+						return '&euro; ' + data
+					}
+				},
+				{
+					data: 'quantity'
+				},
+				{
+					data: 'id',
+					bSortable: false,
+					mRender: function(data, type, row){
+						var str = '';
+						str += '<a href="'+window.contextRoot+'/show/'+data+'/product"><i class="fas fa-eye"></i>&nbsp</a>';
+						str += '<a href="'+window.contextRoot+'/cart/add/'+data+'/product"><i class="fas fa-shopping-cart"></i></a>';
+						return str;
+					}
+				}
+			]
+			
 		});
 	}
 

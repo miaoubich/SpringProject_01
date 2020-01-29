@@ -22,6 +22,7 @@
 
 <script>
 	window.menu = "${title}";
+	window.contextRoot = "${contextRoot}";
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -83,7 +84,7 @@
 		<!-- dataTable for bs4 -->
 		<script src="${js}/bs4-dataTables.js"></script>
 		<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.js"></script> -->
-
+		<script src="${js}/fa-icons.js"></script>
 		<!-- customize javascript -->
 		<script src="${js}/myapp.js"></script>
 
