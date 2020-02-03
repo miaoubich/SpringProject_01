@@ -1,5 +1,7 @@
 package net.darinlina.mvcproject01.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,8 @@ import net.darinline.mvcproject01backend.dto.Product;
 @Controller
 public class PageController {
 
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+
 	@Autowired
 	private CategoryDAO categoryDAO;
 	@Autowired
@@ -23,6 +27,9 @@ public class PageController {
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
+
+		logger.info("INFO - rom index method");
+		logger.info("DEBUG - rom index method");
 
 		mv.addObject("categories", categoryDAO.List());
 
@@ -78,27 +85,27 @@ public class PageController {
 		mv.addObject("userClickCategoryProducts", true);
 		return mv;
 	}
-	
+
 	/*
 	 * Show a single product
 	 * 
-	 * */
+	 */
 	@RequestMapping(value = "/show/{id}/product")
 	public ModelAndView showSingleProduct(@PathVariable int id) {
-		
+
 		ModelAndView mv = new ModelAndView("page");
 		Product product = null;
-		
+
 		product = productDAO.get(id);
 		product.setViews(product.getViews() + 1);
 		// update the view count
-		productDAO.update(product);		
-		
+		productDAO.update(product);
+
 		mv.addObject("title", product.getName());
 		mv.addObject("product", product);
-		
+
 		mv.addObject("userClickShowProduct", true);
-		
+
 		return mv;
 	}
 
