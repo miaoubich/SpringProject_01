@@ -74,6 +74,11 @@
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
 
+			<!-- Load a manage product -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>
+			
 		</div>
 
 		<!-- Footer -->
