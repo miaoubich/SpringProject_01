@@ -11,7 +11,7 @@ $(function() {
 			'border' : '1px solid #fff'
 		}).css('border-radius', '5px');
 		break;
-	case 'manageProducts':
+	case 'Manage Products':
 		$('#manageProducts').addClass('active').css({
 			'border' : '1px solid #fff'
 		}).css('border-radius', '5px');

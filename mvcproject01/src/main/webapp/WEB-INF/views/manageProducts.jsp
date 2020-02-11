@@ -2,9 +2,9 @@
 
 	<div class="row">
 
-		<div class="col-md-offset-2 col-md-8">
+		<div class="offset-md-2 col-md-8">
 
-			<div class="card-header">
+			<div class="card">
 
 				<div class="card-header bg-primary text-white">Product Management</div>
 

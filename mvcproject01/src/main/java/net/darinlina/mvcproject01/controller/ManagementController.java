@@ -14,7 +14,7 @@ public class ManagementController {
 
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("userClickManageProducts", true);
-		mv.addObject("tetle", "Manage Products");
+		mv.addObject("title", "Manage Products");
 
 		return mv;
 	}
