@@ -77,11 +77,12 @@
 								<label class="control-label col-md-4" for="category">Select
 									category: </label>
 								<div class="col-md-8">
-									<select type="number" name="categoryId" id="categoryId"
-										class="form-control">
-										<option value="1">Category One</option>
-										<option value="2">Category Two</option>
-									</select>
+									<sf:select type="number" path="categoryId" id="categoryId"
+										class="form-control"
+										items="${categories}"
+										itemLabel="name"
+										itemValue="id"	
+									/>
 								</div>
 							</div>
 						</div>
@@ -90,6 +91,13 @@
 							<div class="offset-md-4 col-md-8">
 								<input type="submit" name="submit" id="submit"
 									class="btn btn-primary" value="Submit" />
+							<!-- Hidden fields for products -->	
+								<sf:hidden path="id"/>
+								<sf:hidden path="code"/>
+								<sf:hidden path="supplierId"/>
+								<sf:hidden path="active"/>
+								<sf:hidden path="purchases"/>
+								<sf:hidden path="views"/>
 							</div>
 						</div>
 					</sf:form>
