@@ -105,4 +105,11 @@ $(function() {
 				});
 	}
 
+	// Dismissing alert after 3s
+	var $alert = $('.alert');
+	if ($alert.length) {
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		}, 3000)
+	}
 });

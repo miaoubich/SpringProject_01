@@ -2,6 +2,14 @@
 <div class="container">
 
 	<div class="row">
+		<c:if test="${not empty message}">
+			<div class="col-12">
+				<div class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${message}
+				</div>
+			</div>
+		</c:if>
 
 		<div class="offset-md-2 col-md-8">
 
@@ -12,7 +20,8 @@
 
 				<div class="card-body">
 
-					<sf:form class="form-horizontal" modelAttribute="product">
+					<sf:form class="form-horizontal" modelAttribute="product"
+						action="${contextRoot}/manage/products" method="POST">
 
 						<div class="form-group">
 							<div class="row">
@@ -49,7 +58,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="row">
 								<label class="control-label col-md-4" for="unitPrice">Enter
@@ -78,11 +87,8 @@
 									category: </label>
 								<div class="col-md-8">
 									<sf:select type="number" path="categoryId" id="categoryId"
-										class="form-control"
-										items="${categories}"
-										itemLabel="name"
-										itemValue="id"	
-									/>
+										class="form-control" items="${categories}" itemLabel="name"
+										itemValue="id" />
 								</div>
 							</div>
 						</div>
@@ -91,13 +97,13 @@
 							<div class="offset-md-4 col-md-8">
 								<input type="submit" name="submit" id="submit"
 									class="btn btn-primary" value="Submit" />
-							<!-- Hidden fields for products -->	
-								<sf:hidden path="id"/>
-								<sf:hidden path="code"/>
-								<sf:hidden path="supplierId"/>
-								<sf:hidden path="active"/>
-								<sf:hidden path="purchases"/>
-								<sf:hidden path="views"/>
+								<!-- Hidden fields for products -->
+								<sf:hidden path="id" />
+								<sf:hidden path="code" />
+								<sf:hidden path="supplierId" />
+								<sf:hidden path="active" />
+								<sf:hidden path="purchases" />
+								<sf:hidden path="views" />
 							</div>
 						</div>
 					</sf:form>
