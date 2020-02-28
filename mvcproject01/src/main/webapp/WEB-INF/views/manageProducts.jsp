@@ -1,4 +1,5 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
 
 	<div class="row">
@@ -30,7 +31,8 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="name" id="name"
 										class="form-control" placeholder="Enter Product Name" />
-									<em class="help-block">Please enter a product name!</em>
+										<sf:errors path="name" cssClass="help-block" element="em"/>
+<!-- 									<em class="help-block">Please enter a product name!</em> -->
 								</div>
 							</div>
 						</div>
@@ -41,7 +43,8 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="brand" id="brand"
 										class="form-control" placeholder="Enter Brand Name" />
-									<em class="help-block">Please enter a brand name!</em>
+										<sf:errors path="brand" cssClass="help-block" element="em"/>
+<!-- 									<em class="help-block">Please enter a brand name!</em> -->
 								</div>
 							</div>
 						</div>
@@ -54,7 +57,8 @@
 									<sf:textarea path="description" id="description" rows="4"
 										class="form-control"
 										placeholder="Please write some description" />
-									<em class="help-block">Please enter a description!</em>
+										<sf:errors path="description" cssClass="help-block" element="em"/>
+<!-- 									<em class="help-block">Please enter a description!</em> -->
 								</div>
 							</div>
 						</div>
@@ -66,6 +70,7 @@
 								<div class="col-md-8">
 									<sf:input type="number" path="unitPrice" id="unitPrice"
 										class="form-control" placeholder="unit price in &euro;" />
+										<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
 								</div>
 							</div>
 						</div>
