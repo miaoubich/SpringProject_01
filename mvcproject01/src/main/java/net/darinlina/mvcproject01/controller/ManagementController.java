@@ -61,6 +61,7 @@ public class ManagementController {
 		if (results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);
 			model.addAttribute("title", "Manage Products");
+			model.addAttribute("message", "Failed to add a product!");
 
 			return "page";
 		}
