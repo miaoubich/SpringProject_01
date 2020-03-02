@@ -31,8 +31,9 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="name" id="name"
 										class="form-control" placeholder="Enter Product Name" />
-										<sf:errors path="name" cssClass="help-block" element="em"/>
-<!-- 									<em class="help-block">Please enter a product name!</em> -->
+									<sf:errors path="name" cssClass="help-block" element="em" />
+									<em class="help-block" id="errorname">Please enter a
+										product name2!</em>
 								</div>
 							</div>
 						</div>
@@ -43,8 +44,9 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="brand" id="brand"
 										class="form-control" placeholder="Enter Brand Name" />
-										<sf:errors path="brand" cssClass="help-block" element="em"/>
-<!-- 									<em class="help-block">Please enter a brand name!</em> -->
+									<sf:errors path="brand" cssClass="help-block" element="em" />
+									<em class="help-block" id="errorbrand">Please enter a
+										brand name!</em>
 								</div>
 							</div>
 						</div>
@@ -57,8 +59,10 @@
 									<sf:textarea path="description" id="description" rows="4"
 										class="form-control"
 										placeholder="Please write some description" />
-										<sf:errors path="description" cssClass="help-block" element="em"/>
-<!-- 									<em class="help-block">Please enter a description!</em> -->
+									<sf:errors path="description" cssClass="help-block"
+										element="em" />
+									<em class="help-block" id="errordescription">Please enter
+										a description!</em>
 								</div>
 							</div>
 						</div>
@@ -70,7 +74,8 @@
 								<div class="col-md-8">
 									<sf:input type="number" path="unitPrice" id="unitPrice"
 										class="form-control" placeholder="unit price in &euro;" />
-										<sf:errors path="unitPrice" cssClass="help-block" element="em"/>
+									<sf:errors path="unitPrice" cssClass="help-block" element="em" />
+									<em class="help-block" id="errorprice">The price should not be less then 1!</em>
 								</div>
 							</div>
 						</div>

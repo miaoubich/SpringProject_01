@@ -107,9 +107,55 @@ $(function() {
 
 	// Dismissing alert after 3s
 	var $alert = $('.alert');
+
 	if ($alert.length) {
 		setTimeout(function() {
 			$alert.fadeOut('slow');
 		}, 3000)
 	}
+
+	var $errorname = $('#errorname');
+	var $name = $('#name');
+	$errorname.hide();
+
+	var $errorbrand = $('#errorbrand');
+	var $brand = $('#brand');
+	$errorbrand.hide();
+
+	var $errordescription = $('#errordescription');
+	var $description = $('#description');
+	$errordescription.hide();
+	
+	var $errorprice = $('#errorprice');
+	var $price = $('#unitPrice');
+	$errorprice.hide();
+	
+	$name.focusout(function() {
+		if ($name.val().length == 0) {
+			$errorname.show();
+		} else {
+			$errorname.hide();
+		}
+	});
+	$brand.focusout(function() {
+		if ($brand.val().length == 0) {
+			$errorbrand.show();
+		} else {
+			$errorbrand.hide();
+		}
+	});
+	$description.focusout(function() {
+		if ($description.val().length == 0) {
+			$errordescription.show();
+		} else {
+			$errordescription.hide();
+		}
+	});
+	$price.focusout(function() {
+		if ($price.val() <= 0) {
+			$errorprice.show();
+		} else {
+			$errorprice.hide();
+		}
+	});
 });
