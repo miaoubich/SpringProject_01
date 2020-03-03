@@ -23,12 +23,12 @@ public class Product {
 	private int id;
 	private String code;
 
-	@NotBlank(message = "Please a product name!")
+	@NotBlank(message = "Please a enter product name!")
 	private String name;
-	@NotBlank(message = "Please a product brand!")
+	@NotBlank(message = "Please a enter product brand!")
 	private String brand;
 	@JsonIgnore
-	@NotBlank(message = "Please a product description!")
+	@NotBlank(message = "Please a enter product description!")
 	private String description;
 	@Column(name = "unit_price")
 	@Min(value = 1, message = "The price shouldn't be less then 1!")

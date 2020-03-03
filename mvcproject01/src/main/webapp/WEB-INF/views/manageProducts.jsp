@@ -47,7 +47,7 @@
 										class="form-control" placeholder="Enter Brand Name" />
 									<sf:errors path="brand" cssClass="help-block" element="em" />
 									<em class="help-block" id="errorbrand">Please enter a
-										brand name!</em>
+										brand name2!</em>
 								</div>
 							</div>
 						</div>
@@ -63,7 +63,7 @@
 									<sf:errors path="description" cssClass="help-block"
 										element="em" />
 									<em class="help-block" id="errordescription">Please enter
-										a description!</em>
+										a description2!</em>
 								</div>
 							</div>
 						</div>
