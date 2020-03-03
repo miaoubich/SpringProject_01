@@ -22,7 +22,8 @@
 				<div class="card-body">
 
 					<sf:form class="form-horizontal" modelAttribute="product"
-						action="${contextRoot}/manage/products" method="POST">
+						action="${contextRoot}/manage/products"
+						enctype="multipart/form-data" method="POST">
 
 						<div class="form-group">
 							<div class="row">
@@ -75,7 +76,8 @@
 									<sf:input type="number" path="unitPrice" id="unitPrice"
 										class="form-control" placeholder="unit price in &euro;" />
 									<sf:errors path="unitPrice" cssClass="help-block" element="em" />
-									<em class="help-block" id="errorprice">The price should not be less then 1!</em>
+									<em class="help-block" id="errorprice">The price should
+										not be less then 1!</em>
 								</div>
 							</div>
 						</div>
@@ -87,6 +89,17 @@
 								<div class="col-md-8">
 									<sf:input type="number" path="quantity" id="quantity"
 										class="form-control" placeholder="quantity available" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+								<label class="control-label col-md-4" for="fir">Select
+									an image: </label>
+								<div class="col-md-8">
+									<sf:input type="file" path="file" id="file"
+										class="form-control" />
 								</div>
 							</div>
 						</div>

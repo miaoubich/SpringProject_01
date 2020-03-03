@@ -2,6 +2,7 @@ package net.darinlina.mvcproject01.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.darinlina.mvcproject01.util.FileUploadUtility;
 import net.darinlina.mvcproject01backend.dao.CategoryDAO;
 import net.darinlina.mvcproject01backend.dao.ProductDAO;
 import net.darinline.mvcproject01backend.dto.Category;
@@ -55,7 +57,7 @@ public class ManagementController {
 	// Handling product submition
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
-			Model model) {
+			Model model, HttpServletRequest request) {
 
 		// check if there any errors
 		if (results.hasErrors()) {
@@ -70,6 +72,11 @@ public class ManagementController {
 
 		// create a new product record
 		productDAO.add(nProduct);
+
+		if (!nProduct.getFile().getOriginalFilename().contentEquals("")) {
+			FileUploadUtility.uploadFile(request, nProduct.getFile(), nProduct.getCode());// request is used to get the
+																							// real path of the image
+		}
 
 		return "redirect:/manage/products?operation=product";
 	}
