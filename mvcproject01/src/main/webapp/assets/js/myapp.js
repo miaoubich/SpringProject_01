@@ -113,7 +113,7 @@ $(function() {
 			$alert.fadeOut('slow');
 		}, 3000)
 	}
-
+	// Add new product validation form
 	var $errorname = $('#errorname');
 	var $name = $('#name');
 	$errorname.hide();
@@ -125,11 +125,11 @@ $(function() {
 	var $errordescription = $('#errordescription');
 	var $description = $('#description');
 	$errordescription.hide();
-	
+
 	var $errorprice = $('#errorprice');
 	var $price = $('#unitPrice');
 	$errorprice.hide();
-	
+
 	$name.focusout(function() {
 		if ($name.val().length == 0) {
 			$errorname.show();
