@@ -100,7 +100,7 @@
 								<div class="col-md-8">
 									<sf:input type="file" path="file" id="file"
 										class="form-control" />
-										<sf:errors path="file" cssClass="help-block" element="em" />
+									<sf:errors path="file" cssClass="help-block" element="em" />
 								</div>
 							</div>
 						</div>
@@ -141,4 +141,65 @@
 
 	</div>
 
+
+	<div class="row">
+		<div class="col-12">
+			<h3>Available Products</h3>
+		</div>
+		<div class="col-12">
+			<!-- Product table for admin -->
+			<div style="overflow: auto">
+				<table id="adminProductsTable"
+					class="table table-condensed table-bordered">
+
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Qty. Avail</th>
+							<th>Unit Price</th>
+							<th>Activate</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><img class="adminDataTableImg"
+								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
+								alt="FROZEN DOLL ELSA" /></td>
+							<td>FROZEN DOLL ELSA</td>
+							<td>Disney</td>
+							<td>5</td>
+							<td>&euro 25.00 /-</td>
+							<td>
+								<!-- toogle Switch-->
+								<label class="switch"> 
+									<input type="checkbox" checked="checked" /> 
+									<div class="slider"></div>
+								</label>
+							</td>
+							<td></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Qty. Avail</th>
+							<th>Unit Price</th>
+							<th>Activate</th>
+							<th>Edit</th>
+						</tr>
+					</tfoot>
+
+
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
