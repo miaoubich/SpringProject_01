@@ -95,6 +95,8 @@
 		<script src="${js}/bs4-dataTables.js"></script>
 		<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.js"></script> -->
 		<script src="${js}/fa-icons.js"></script>
+		<!-- Bootbox js -->
+		<script src="${js}/bootbox.min.js"></script>
 		<!-- customize javascript -->
 		<script src="${js}/myapp.js"></script>
 

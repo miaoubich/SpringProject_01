@@ -158,4 +158,41 @@ $(function() {
 			$errorprice.hide();
 		}
 	});
+
+	// -------------
+	$(".switch input[type='checkbox']")
+			.on(
+					"change",
+					function() {
+						var checkbox = $(this);
+						var checked = checkbox.prop('checked');
+						var dMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
+								: 'To dactivate this product please click OK or Cancel to decline?';
+						var value = checkbox.prop('value');
+
+						bootbox
+								.confirm({
+									size : 'medium',
+									title : 'Product activation & deactivation',
+									message : dMessage,
+									callback : function(confirmed) {
+
+										if (confirmed) {
+											console.log(value);
+											bootbox
+													.alert({
+														size : 'medium',
+														title : 'Information',
+														message : 'You are going to perform an operation on product '
+																+ value
+													});
+
+										} else {
+											checkbox.prop('checked', !checked);
+										}
+									}
+								})
+
+					});
+
 });

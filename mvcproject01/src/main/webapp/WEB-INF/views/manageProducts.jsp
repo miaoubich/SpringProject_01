@@ -173,15 +173,35 @@
 							<td>FROZEN DOLL ELSA</td>
 							<td>Disney</td>
 							<td>5</td>
-							<td>&euro 25.00 /-</td>
+							<td>&euro; 25.00 /-</td>
 							<td>
-								<!-- toogle Switch-->
-								<label class="switch"> 
-									<input type="checkbox" checked="checked" /> 
+								<!-- toogle Switch--> <label class="switch"> <input
+									type="checkbox" checked="checked" value="1" />
 									<div class="slider"></div>
-								</label>
+							</label>
 							</td>
-							<td></td>
+							<td><a href="${contextRoot}/manage/1/product">
+									Edit<i class="fa fa-pencil"></i>
+							</a></td>
+						</tr>
+
+						<tr>
+							<td>1</td>
+							<td><img class="adminDataTableImg"
+								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
+								alt="FROZEN DOLL ELSA" /></td>
+							<td>FROZEN DOLL ELSA</td>
+							<td>Disney</td>
+							<td>5</td>
+							<td>&euro; 25.00 /-</td>
+							<td>
+								<!-- toogle Switch--> <label class="switch"> <input
+									type="checkbox" value="1" />
+									<div class="slider"></div>
+							</label>
+							</td>
+							<td><a href="${contextRoot}/manage/1/product"><i
+									style="font-size: 24px" class="fa">&#xf040;</i> </a></td>
 						</tr>
 					</tbody>
 					<tfoot>
