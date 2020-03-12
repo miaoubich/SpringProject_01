@@ -181,7 +181,7 @@
 							</label>
 							</td>
 							<td><a href="${contextRoot}/manage/1/product">
-									Edit<i class="fa fa-pencil"></i>
+									<i class="fas fa-pencil-alt"></i>
 							</a></td>
 						</tr>
 
@@ -200,8 +200,7 @@
 									<div class="slider"></div>
 							</label>
 							</td>
-							<td><a href="${contextRoot}/manage/1/product"><i
-									style="font-size: 24px" class="fa">&#xf040;</i> </a></td>
+							<td><a href="${contextRoot}/manage/1/product"><i class="far fa-edit"></i></a></td>
 						</tr>
 					</tbody>
 					<tfoot>
