@@ -38,11 +38,9 @@ $(function() {
 					+ window.categoryId + '/products'
 		}
 
-		$table
-				.DataTable({
-					// lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10
-					// Records','All']],
-					// pageLength: 3,
+		$table.DataTable({
+					 lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10 Records','All']],
+					 pageLength: 5,
 					ajax : {
 						url : jsonUrl,
 						dataSrc : ''
@@ -50,6 +48,7 @@ $(function() {
 					columns : [
 							{
 								data : 'code',
+								bSortable : false,
 								mRender : function(data, type, row) {
 									return '<img src="' + window.contextRoot
 											+ '/resources/images/' + data
@@ -65,16 +64,16 @@ $(function() {
 							{
 								data : 'unitPrice',
 								mRender : function(data, type, row) {
-									return '&euro; ' + data
+									return '<center>' + data + ' &euro;</center>'
 								}
 							},
 							{
 								data : 'quantity',
 								mRender : function(data, type, row) {
 									if (data < 1) {
-										return '<span style="color:red">Out of stock!</span>';
+										return '<center><span style="color:red">Out of stock!</span></center>';
 									} else {
-										return data;
+										return '<center>'+ data + '</center>';
 									}
 								}
 							},
