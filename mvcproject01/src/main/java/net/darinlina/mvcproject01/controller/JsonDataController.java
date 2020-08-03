@@ -13,7 +13,7 @@ import net.darinline.mvcproject01backend.dto.Product;
 
 @Controller
 @RequestMapping("/json/data")
-public class JasonDataController {
+public class JsonDataController {
 
 	@Autowired
 	private ProductDAO productDAO; 

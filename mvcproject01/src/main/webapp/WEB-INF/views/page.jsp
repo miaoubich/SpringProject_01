@@ -6,6 +6,7 @@
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
+<spring:url var="fonts" value="/resources/webfonts" />
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 
@@ -28,7 +29,7 @@
 <!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap fontawesome css -->
-<link href="${css}/fontawesome.css" rel="stylesheet">
+<link href="${css}/all.css" rel="stylesheet">
 <!-- bootstrap css theme -->
 <link href="${css}/bootstrap.cerulean.theme.css" rel="stylesheet">
 <!-- Bootstrap table css -->
