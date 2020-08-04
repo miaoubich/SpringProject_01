@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container">
 
 	<!-- breadcrumb -->
@@ -16,8 +17,8 @@
 
 		<!-- Display the product image -->
 		<div class="col-xs-12 col-lg-4">
-			<div class="thumbnail">
-				<img src="${images}/${product.code}.jpg" class="img img-responsive" />
+			<div class="img-thumbnail">
+				<img class="img-fluid" src="${images}/${product.code}.jpg" />
 			</div>
 		</div>
 
@@ -34,7 +35,7 @@
 			<c:choose>
 				<c:when test="${product.quantity < 1}">
 					<h6>
-						Qty. Available: <span style="color:red">Out of stock!</span>
+						Qty. Available: <span style="color: red">Out of stock!</span>
 					</h6>
 				</c:when>
 				<c:otherwise>
@@ -45,8 +46,8 @@
 
 			<c:choose>
 				<c:when test="${product.quantity < 1}">
-					<a href="javascript:void(0)" class="btn btn-success disabled"><strike><i
-							class="fas fa-shopping-cart"></i> Add to Cart</strike></a>
+					<a href="javascript:void(0)" class="btn btn-success disabled"><i
+						class="fas fa-shopping-cart"></i> Add to Cart</a>
 				</c:when>
 				<c:otherwise>
 					<a href="${contextRoot}/cart/add/${product.id}/product"

@@ -16,7 +16,7 @@ $(function() {
 			'border' : '1px solid #fff'
 		}).css('border-radius', '5px');
 		break;
-	default:
+	case 'All Products':
 		$('#listProducts').addClass('active').css({
 			'border' : '1px solid #fff'
 		}).css('border-radius', '5px');
@@ -86,7 +86,7 @@ $(function() {
 											+ window.contextRoot
 											+ '/show/'
 											+ data
-											+ '/product"><i class="fas fa-eye"></i>&nbsp</a>';
+											+ '/product"><i class="fas fa-eye"></i></a>&nbsp';
 
 									if (row.quantity < 1) {
 										str += '<a style="color:red"><i class="fas fa-shopping-cart"></i></a>';
