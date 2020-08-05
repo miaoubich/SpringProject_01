@@ -57,7 +57,7 @@
 					<div class="col-lg-12">
 						<div class="jumbotron">
 							
-							<h1>${errorTitle}</h1>
+							<h2>${errorTitle}</h2>
 							<hr/>
 							<blockquote style="word-wrap:break-word">
 								${errorDescription}
