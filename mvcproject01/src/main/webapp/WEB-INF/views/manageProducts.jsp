@@ -7,7 +7,7 @@
 	
 		<c:if test="${not empty message}">
 			<div class="col-12">
-				<div class="alert alert-success alert-dismissible">
+				<div class="alert alert-danger">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					${message}
 				</div>
@@ -34,7 +34,9 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="name" id="name"
 										class="form-control" placeholder="Enter Product Name" />
+										<!-- Hibernate backend validation -->
 									<sf:errors path="name" cssClass="help-block" element="em" />
+									<!-- jQuery frontend validation -->
 									<em class="help-block" id="errorname">Please enter a
 										product name2!</em>
 								</div>
