@@ -33,8 +33,8 @@ public class PageController {
 		logger.info("DEBUG - rom index method");
 
 		mv.addObject("categories", categoryDAO.List());
-
 		mv.addObject("userClickHome", true);
+		
 		return mv;
 	}
 

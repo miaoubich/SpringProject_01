@@ -55,10 +55,11 @@ public class ManagementController {
 		return mv;
 	}
 
-	// Handling product submition
+	// Handling product submission
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
-			Model model, HttpServletRequest request) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product") 
+			Product nProduct, BindingResult results,
+				Model model, HttpServletRequest request) {
 
 		new ProductValidator().validate(nProduct, results);
 

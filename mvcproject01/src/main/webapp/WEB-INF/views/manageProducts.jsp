@@ -1,8 +1,10 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <div class="container">
 
 	<div class="row">
+	
 		<c:if test="${not empty message}">
 			<div class="col-12">
 				<div class="alert alert-success alert-dismissible">
@@ -27,7 +29,7 @@
 
 						<div class="form-group">
 							<div class="row">
-								<label class="control-label col-md-4" for="name">Enter
+								<label class="control-label col-md-4" for="name">
 									Product Name: </label>
 								<div class="col-md-8">
 									<sf:input type="text" path="name" id="name"
@@ -40,8 +42,8 @@
 						</div>
 						<div class="form-group">
 							<div class="row">
-								<label class="control-label col-md-4" for="brand">Enter
-									Brand Name: </label>
+								<label class="control-label col-md-4" for="brand">Brand
+									Name: </label>
 								<div class="col-md-8">
 									<sf:input type="text" path="brand" id="brand"
 										class="form-control" placeholder="Enter Brand Name" />
@@ -142,10 +144,12 @@
 	</div>
 
 
+
+	<div class="card bg-light text-dark mt-4 mb-2">
+		<div class="card-body">Available Products</div>
+	</div>
+	
 	<div class="row">
-		<div class="col-12">
-			<h3>Available Products</h3>
-		</div>
 		<div class="col-12">
 			<!-- Product table for admin -->
 			<div style="overflow: auto">
@@ -175,13 +179,13 @@
 							<td>5</td>
 							<td>&euro; 25.00 /-</td>
 							<td>
-								<!-- toogle Switch--> <label class="switch"> <input
+								<!-- toggle Switch--> <label class="switch"> <input
 									type="checkbox" checked="checked" value="1" />
 									<div class="slider"></div>
 							</label>
 							</td>
-							<td><a href="${contextRoot}/manage/1/product">
-									<i class="fas fa-pencil-alt"></i>
+							<td><a href="${contextRoot}/manage/1/product"> <i
+									class="fas fa-pencil-alt"></i>
 							</a></td>
 						</tr>
 
@@ -200,7 +204,8 @@
 									<div class="slider"></div>
 							</label>
 							</td>
-							<td><a href="${contextRoot}/manage/1/product"><i class="far fa-edit"></i></a></td>
+							<td><a href="${contextRoot}/manage/1/product"><i
+									class="far fa-edit"></i></a></td>
 						</tr>
 					</tbody>
 					<tfoot>
