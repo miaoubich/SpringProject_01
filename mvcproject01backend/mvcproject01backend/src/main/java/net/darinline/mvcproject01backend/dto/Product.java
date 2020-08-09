@@ -30,7 +30,7 @@ public class Product {
 	@JsonIgnore
 	@NotBlank(message = "Please enter a product description!")
 	private String description;
-	@Column(name = "unit_price")
+	@Column(name = "unit_price")// is the name of the column in database table
 	@Min(value = 1, message = "The price shouldn't be less then 1!")
 	private double unitPrice;
 	private int quantity;

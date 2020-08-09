@@ -7,9 +7,17 @@
 	
 		<c:if test="${not empty message}">
 			<div class="col-12">
-				<div class="alert alert-danger">
+				<div class="alert alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					${message}
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty errorMessage}">
+			<div class="col-12">
+				<div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					${errorMessage}
 				</div>
 			</div>
 		</c:if>
@@ -26,7 +34,7 @@
 					<sf:form class="form-horizontal" modelAttribute="product"
 						action="${contextRoot}/manage/products"
 						enctype="multipart/form-data" method="POST">
-
+					<!-- path should be the same variable declared in Product.jaca class -->
 						<div class="form-group">
 							<div class="row">
 								<label class="control-label col-md-4" for="name">

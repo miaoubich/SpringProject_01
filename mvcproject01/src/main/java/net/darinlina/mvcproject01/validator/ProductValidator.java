@@ -7,6 +7,7 @@ import net.darinline.mvcproject01backend.dto.Product;
 
 public class ProductValidator implements Validator {
 
+	//The following will check if we have a product instant only
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return Product.class.equals(clazz);
@@ -17,8 +18,9 @@ public class ProductValidator implements Validator {
 
 		Product product = (Product) target;
 		
-		if(product.getFile() == null || product.getFile().getOriginalFilename().contentEquals("")) {
-			errors.rejectValue("file", null, "Please select a file to upload");
+		if(product.getFile() == null || 
+				product.getFile().getOriginalFilename().contentEquals("")) {
+			errors.rejectValue("file", null, "Please select an Image to upload");
 			return;
 		}
 		if(!(product.getFile().getContentType().equals("image/jpeg")

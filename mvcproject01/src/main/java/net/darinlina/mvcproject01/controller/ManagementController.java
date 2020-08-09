@@ -61,13 +61,14 @@ public class ManagementController {
 			Product nProduct, BindingResult results,
 				Model model, HttpServletRequest request) {
 
+		//To check the image error message
 		new ProductValidator().validate(nProduct, results);
 
 		// check if there any errors
 		if (results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);
 			model.addAttribute("title", "Manage Products");
-			model.addAttribute("message", "Failed to add a product!");
+			model.addAttribute("errorMessage", "Failed to add a product!");
 
 			return "page";
 		}
