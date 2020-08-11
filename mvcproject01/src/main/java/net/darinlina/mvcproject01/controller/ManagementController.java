@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.darinlina.mvcproject01.util.FileUploadUtility;
@@ -57,11 +59,10 @@ public class ManagementController {
 
 	// Handling product submission
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") 
-			Product nProduct, BindingResult results,
-				Model model, HttpServletRequest request) {
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
+			Model model, HttpServletRequest request) {
 
-		//To check the image error message
+		// To check the image error message
 		new ProductValidator().validate(nProduct, results);
 
 		// check if there any errors
@@ -84,6 +85,20 @@ public class ManagementController {
 		}
 
 		return "redirect:/manage/products?operation=product";
+	}
+
+	@RequestMapping(value = "/product/{id}/activation", method = RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActivation(@PathVariable int id) {
+		// fetch the product based on its id
+		Product product = productDAO.get(id);
+		boolean isActive = product.isActive();
+		// Change the status of the product activate or deactivate
+		product.setActive(!product.isActive());
+		productDAO.update(product);
+
+		return (isActive) ? "Product with id " + product.getId() + " was successfully de-activated"
+				: "Product with id " + product.getId() + " was activated successfully";
 	}
 
 	// returning categories for all the request mapping

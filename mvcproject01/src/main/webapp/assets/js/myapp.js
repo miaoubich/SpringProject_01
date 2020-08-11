@@ -161,52 +161,6 @@ $(function() {
 		}
 	});
 
-	/*
-	 * -------------
-	 * 
-	 * Toggle switch for activate / Deactivate a product
-	 */
-	
-	$(".switch input[type='checkbox']")
-			.on(
-					"change",
-					function() {
-						var checkbox = $(this);
-						var checked = checkbox.prop('checked');
-						var dialogMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
-								: 'To dactivate this product please click OK or Cancel to decline?';
-						var value = checkbox.prop('value');
-
-						bootbox
-								.confirm({
-									size : 'medium',
-									title : 'Product activation & deactivation',
-									message : dialogMessage,
-									callback : function(confirmed) {
-
-										if (confirmed) {
-											console.log(value);
-											bootbox
-													.alert({
-														size : 'medium',
-														title : 'Information',
-														message : 'You are going to perform an operation on product '
-																+ value
-													});
-
-										} else {
-											checkbox.prop('checked', !checked);// going
-											// back
-											// to
-											// the
-											// previous
-											// state
-										}
-									}
-								})
-
-					});
-
 	/***************************************************************************
 	 * Data table for Admin
 	 * 
@@ -298,7 +252,56 @@ $(function() {
 
 							} 
 								
-							]
+							],
+							
+							/*
+							 *  We user this init complete property to catch the data after it 
+							 * finish loading in the table and get the entire api for the dataTable
+							 * that we can apply the evenst handling functions for the switch
+							 * 
+							 * */
+							
+							initComplete: function(){
+								
+								var api = this.api();
+								api.$(".switch input[type='checkbox']")
+									.on("change", function() {
+											var checkbox = $(this);
+											var checked = checkbox.prop('checked');
+											var dialogMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
+													: 'To dactivate this product please click OK or Cancel to decline?';
+											var value = checkbox.prop('value');
+
+											bootbox.confirm({
+														size : 'medium',
+														title : 'Product activation & deactivation',
+														message : dialogMessage,
+														callback : function(confirmed) {
+
+															if (confirmed) {
+																console.log(value);//value: will be the id of the product
+																
+																var activationUrl = window.contextRoot +'/manage/product/' + value + '/activation';
+																
+																$.post(activationUrl, function(data){
+																	bootbox.alert({
+																		size : 'medium',
+																		title : 'Information',
+																		message : data
+																		});
+																	});
+
+															} else {
+																/* 
+																 * back to the previous state
+																 * */
+																checkbox.prop('checked', !checked);// going
+															}
+														}
+													})
+
+										});
+							}
 
 				});
 	}
