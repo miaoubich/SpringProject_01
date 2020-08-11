@@ -45,6 +45,8 @@ public class ManagementController {
 		mv.addObject("title", "Manage Products");
 		Product nProduct = new Product();
 
+		//each time a product is created it will be set to active is true and supplierId to '1'
+		//That we can generate the code field for the img name
 		nProduct.setSupplierId(1);
 		nProduct.setActive(true);
 
@@ -56,14 +58,33 @@ public class ManagementController {
 
 		return mv;
 	}
+	
+	@RequestMapping(value="/{id}/product", method=RequestMethod.GET)
+	public ModelAndView showManageEditProduct(@PathVariable int id) {
 
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickManageProducts", true);
+		mv.addObject("title", "Manage Products");
+		//Fetch product from the database
+		Product nProduct = productDAO.get(id);
+		//Set the product that was fetched
+		mv.addObject("product", nProduct);
+		return mv;
+	}
+	
 	// Handling product submission
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
 		// To check the image error message
-		new ProductValidator().validate(nProduct, results);
+		if(nProduct.getId() == 0)
+			//Handle image validator for a new product
+			new ProductValidator().validate(nProduct, results);
+		else
+			////Handle image validator for to update a product image
+			if(!nProduct.getFile().getOriginalFilename().equals(""))
+				new ProductValidator().validate(nProduct, results);
 
 		// check if there any errors
 		if (results.hasErrors()) {
@@ -76,8 +97,12 @@ public class ManagementController {
 
 		logger.info(nProduct.toString());
 
-		// create a new product record
-		productDAO.add(nProduct);
+		if(nProduct.getId() == 0)
+			// create a new product record
+			productDAO.add(nProduct);
+		else
+			//Update existing product by its id
+			productDAO.update(nProduct);
 
 		if (!nProduct.getFile().getOriginalFilename().contentEquals("")) {
 			FileUploadUtility.uploadFile(request, nProduct.getFile(), nProduct.getCode());// request is used to get the
