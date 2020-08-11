@@ -4,7 +4,7 @@
 <div class="container">
 
 	<div class="row">
-	
+
 		<c:if test="${not empty message}">
 			<div class="col-12">
 				<div class="alert alert-success">
@@ -34,7 +34,7 @@
 					<sf:form class="form-horizontal" modelAttribute="product"
 						action="${contextRoot}/manage/products"
 						enctype="multipart/form-data" method="POST">
-					<!-- path should be the same variable declared in Product.jaca class -->
+						<!-- path should be the same variable declared in Product.java class -->
 						<div class="form-group">
 							<div class="row">
 								<label class="control-label col-md-4" for="name">
@@ -42,7 +42,7 @@
 								<div class="col-md-8">
 									<sf:input type="text" path="name" id="name"
 										class="form-control" placeholder="Enter Product Name" />
-										<!-- Hibernate backend validation -->
+									<!-- Hibernate backend validation -->
 									<sf:errors path="name" cssClass="help-block" element="em" />
 									<!-- jQuery frontend validation -->
 									<em class="help-block" id="errorname">Please enter a
@@ -158,13 +158,13 @@
 	<div class="card bg-light text-dark mt-4 mb-2">
 		<div class="card-body">Available Products</div>
 	</div>
-	
+
 	<div class="row">
 		<div class="col-12">
 			<!-- Product table for admin -->
 			<div style="overflow: auto">
-				<table id="adminProductsTable"
-					class="table table-condensed table-bordered">
+<!-- 				<table id="adminProductsTable" class="table table-condensed table-bordered"> -->
+				<table id="adminProductsTable" class="table table-striped" data-toggle="table" data-pagination="true" data-search="true" style="width: 100%">
 
 					<thead>
 						<tr>
@@ -172,64 +172,25 @@
 							<th>&#160;</th>
 							<th>Name</th>
 							<th>Brand</th>
-							<th>Qty. Avail</th>
+							<th>Qty. Available</th>
 							<th>Unit Price</th>
 							<th>Activate</th>
 							<th>Edit</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td><img class="adminDataTableImg"
-								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
-								alt="FROZEN DOLL ELSA" /></td>
-							<td>FROZEN DOLL ELSA</td>
-							<td>Disney</td>
-							<td>5</td>
-							<td>&euro; 25.00 /-</td>
-							<td>
-								<!-- toggle Switch--> <label class="switch"> <input
-									type="checkbox" checked="checked" value="1" />
-									<div class="slider"></div>
-							</label>
-							</td>
-							<td><a href="${contextRoot}/manage/1/product"> <i
-									class="fas fa-pencil-alt"></i>
-							</a></td>
-						</tr>
-
-						<tr>
-							<td>1</td>
-							<td><img class="adminDataTableImg"
-								src="${contextRoot}/resources/images/PRDABC123DEFX.jpg"
-								alt="FROZEN DOLL ELSA" /></td>
-							<td>FROZEN DOLL ELSA</td>
-							<td>Disney</td>
-							<td>5</td>
-							<td>&euro; 25.00 /-</td>
-							<td>
-								<!-- toogle Switch--> <label class="switch"> <input
-									type="checkbox" value="1" />
-									<div class="slider"></div>
-							</label>
-							</td>
-							<td><a href="${contextRoot}/manage/1/product"><i
-									class="far fa-edit"></i></a></td>
-						</tr>
-					</tbody>
+					
 					<tfoot>
 						<tr>
 							<th>Id</th>
 							<th>&#160;</th>
 							<th>Name</th>
 							<th>Brand</th>
-							<th>Qty. Avail</th>
+							<th>Qty. Available</th>
 							<th>Unit Price</th>
 							<th>Activate</th>
 							<th>Edit</th>
-						</tr>
-					</tfoot>
+					   </tr>
+				   </tfoot>
 
 
 				</table>

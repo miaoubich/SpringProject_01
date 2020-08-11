@@ -29,7 +29,7 @@ $(function() {
 	var $table = $('#productListTable');
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
 	if ($table.length) {
-
+		console.log('Inside the product list table !');
 		var jsonUrl = '';
 		if (window.categoryId == '') {
 			jsonUrl = window.contextRoot + '/json/data/all/products';
@@ -38,9 +38,11 @@ $(function() {
 					+ window.categoryId + '/products'
 		}
 
-		$table.DataTable({
-					 lengthMenu: [[3,5,10,-1], ['3 Records','5 Records','10 Records','All']],
-					 pageLength: 5,
+		$table
+				.DataTable({
+					lengthMenu : [ [ 3, 5, 10, -1 ],
+							[ '3 Records', '5 Records', '10 Records', 'All' ] ],
+					pageLength : 5,
 					ajax : {
 						url : jsonUrl,
 						dataSrc : ''
@@ -64,7 +66,8 @@ $(function() {
 							{
 								data : 'unitPrice',
 								mRender : function(data, type, row) {
-									return '<center>' + data + ' &euro;</center>'
+									return '<center>' + data
+											+ ' &euro;</center>'
 								}
 							},
 							{
@@ -73,7 +76,7 @@ $(function() {
 									if (data < 1) {
 										return '<center><span style="color:red">Out of stock!</span></center>';
 									} else {
-										return '<center>'+ data + '</center>';
+										return '<center>' + data + '</center>';
 									}
 								}
 							},
@@ -158,14 +161,19 @@ $(function() {
 		}
 	});
 
-	// -------------
+	/*
+	 * -------------
+	 * 
+	 * Toggle switch for activate / Deactivate a product
+	 */
+	
 	$(".switch input[type='checkbox']")
 			.on(
 					"change",
 					function() {
 						var checkbox = $(this);
 						var checked = checkbox.prop('checked');
-						var dMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
+						var dialogMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
 								: 'To dactivate this product please click OK or Cancel to decline?';
 						var value = checkbox.prop('value');
 
@@ -173,7 +181,7 @@ $(function() {
 								.confirm({
 									size : 'medium',
 									title : 'Product activation & deactivation',
-									message : dMessage,
+									message : dialogMessage,
 									callback : function(confirmed) {
 
 										if (confirmed) {
@@ -187,11 +195,112 @@ $(function() {
 													});
 
 										} else {
-											checkbox.prop('checked', !checked);
+											checkbox.prop('checked', !checked);// going
+											// back
+											// to
+											// the
+											// previous
+											// state
 										}
 									}
 								})
 
 					});
+
+	/***************************************************************************
+	 * Data table for Admin
+	 * 
+	 **************************************************************************/
+
+	var $adminTable = $('#adminProductsTable');
+	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
+	if ($adminTable.length) {
+		console.log('Inside the ADMIN products table !');
+	
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
+
+		$adminTable.DataTable({
+					lengthMenu : [
+							[ 10, 30, 100, -1 ],
+							[ '10 Records', '30 Records', '100 Records', 'All' ] ],
+					pageLength : 30,
+					ajax : {
+							url : jsonUrl,
+							dataSrc : '' // because there is no column name in
+										 // post man
+							},
+					columns : [
+							{
+								data : 'id'
+							},
+							{
+								data : 'code',
+								bSortable : false,
+								mRender : function(data, type, row) {
+									return '<img src="'
+											+ window.contextRoot
+											+ '/resources/images/'
+											+ data
+											+ '.jpg" class="adminDataTableImg"/>';
+								}
+							},
+							{
+								data : 'name'
+							},
+							{
+								data : 'brand'
+							},
+							{
+								data : 'quantity',
+								mRender : function(data, type, row) {
+									if (data < 1) {
+										return '<center><span style="color:red">Out of stock!</span></center>';
+									} else {
+										return '<center>' + data + '</center>';
+									}
+								}
+							},
+							{
+								data : 'unitPrice',
+								mRender : function(data, type, row) {
+									return '<center>' + data
+											+ ' &euro;</center>'
+								}
+							},
+							{
+								data : 'active',
+								bSortable : false,
+								mRender : function(data, type, row) {
+									var str = '';
+
+									str += '<label class="switch">'
+									if (data)
+										str += '<input type="checkbox" checked="checked" value="'
+												+ row.id + '" />';
+									else
+										str += '<input type="checkbox" value="'
+												+ row.id + '" />';
+									str += '<div class="slider"></div></label>';
+									
+									return str;
+								}
+							},
+							{
+								data : 'id',
+								bSortable : false,
+								mRender : function(data, type, row) {
+											var str = '';
+											str += '<a href="${contextRoot}/manage/'+data+'/product">';
+											str += '<i class="fas fa-pencil-alt"></i></a>';
+													
+											return str;
+										}
+
+							} 
+								
+							]
+
+				});
+	}
 
 });
