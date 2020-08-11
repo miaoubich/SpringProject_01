@@ -244,7 +244,7 @@ $(function() {
 								bSortable : false,
 								mRender : function(data, type, row) {
 											var str = '';
-											str += '<a href="${contextRoot}/manage/'+data+'/product">';
+											str += '<a href="'+ window.contextRoot +'/manage/'+data+'/product">';
 											str += '<i class="fas fa-pencil-alt"></i></a>';
 													
 											return str;
