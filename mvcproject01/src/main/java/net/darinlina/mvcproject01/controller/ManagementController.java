@@ -52,9 +52,12 @@ public class ManagementController {
 
 		mv.addObject("product", nProduct);
 
-		if (operation != null && operation.equals("product")) {
+		if (operation != null && operation.equals("newProduct")) 
 			mv.addObject("message", "Product has been added successfully!");
+		else if (operation != null && operation.equals("updateProduct")) {
+			mv.addObject("updateMessage", "Product has been updated successfully!");
 		}
+		
 
 		return mv;
 	}
@@ -77,6 +80,8 @@ public class ManagementController {
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
+		boolean newProduct = false;
+		
 		// To check the image error message
 		if(nProduct.getId() == 0)
 			//Handle image validator for a new product
@@ -97,10 +102,11 @@ public class ManagementController {
 
 		logger.info(nProduct.toString());
 
-		if(nProduct.getId() == 0)
+		if(nProduct.getId() == 0) {
 			// create a new product record
 			productDAO.add(nProduct);
-		else
+			newProduct = true;
+		}else
 			//Update existing product by its id
 			productDAO.update(nProduct);
 
@@ -109,7 +115,10 @@ public class ManagementController {
 																							// real path of the image
 		}
 
-		return "redirect:/manage/products?operation=product";
+		if(newProduct)
+			return "redirect:/manage/products?operation=newProduct";
+		else
+			return "redirect:/manage/products?operation=updateProduct";
 	}
 
 	@RequestMapping(value = "/product/{id}/activation", method = RequestMethod.POST)

@@ -9,7 +9,7 @@
 			<div class="col-12">
 				<div class="alert alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${message}
+					<strong style="text:blue">Info - </strong> ${message}
 				</div>
 			</div>
 		</c:if>
@@ -17,7 +17,15 @@
 			<div class="col-12">
 				<div class="alert alert-danger">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					${errorMessage}
+					<strong>Error! - </strong> ${errorMessage}
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty updateMessage}">
+			<div class="col-12">
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong style="text:green">Update - </strong> ${updateMessage}
 				</div>
 			</div>
 		</c:if>
