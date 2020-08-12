@@ -52,13 +52,15 @@ public class ManagementController {
 
 		mv.addObject("product", nProduct);
 
-		if (operation != null && operation.equals("newProduct")) 
-			mv.addObject("message", "Product has been added successfully!");
-		else if (operation != null && operation.equals("updateProduct")) {
-			mv.addObject("updateMessage", "Product has been updated successfully!");
+		if (operation != null) {
+			if(operation.equals("newProduct")) 
+				mv.addObject("message", "Product has been added successfully!");
+			else if (operation.equals("updateProduct"))
+				mv.addObject("updateMessage", "Product has been updated successfully!");
+			else if (operation.equals("category")) 
+				mv.addObject("updateMessage", "Category has been updated successfully!");
 		}
 		
-
 		return mv;
 	}
 	
@@ -135,6 +137,21 @@ public class ManagementController {
 				: "Product with id " + product.getId() + " was activated successfully";
 	}
 
+	
+	//handle category submission
+	@RequestMapping(value="/category, method=RequestMethod.POST")
+	public String handleCategorySubmission(@ModelAttribute Category category) {
+		//add new category
+		categoryDAO.add(category);
+		
+		return "redirect:/manage/product?operation=category";
+	}
+	
+	@ModelAttribute("category") //should be the same as in the form (modalAttribute="category")
+	public Category getCategory() {
+		return new Category();
+	}
+	
 	// returning categories for all the request mapping
 	@ModelAttribute("categories")
 	public List<Category> getCategories() {

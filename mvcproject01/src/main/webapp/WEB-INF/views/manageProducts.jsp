@@ -9,7 +9,7 @@
 			<div class="col-12">
 				<div class="alert alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong style="text:blue">Info - </strong> ${message}
+					<strong style="text: blue">Info - </strong> ${message}
 				</div>
 			</div>
 		</c:if>
@@ -25,7 +25,7 @@
 			<div class="col-12">
 				<div class="alert alert-info">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<strong style="text:green">Update - </strong> ${updateMessage}
+					<strong style="text: green">Update - </strong> ${updateMessage}
 				</div>
 			</div>
 		</c:if>
@@ -133,6 +133,17 @@
 									<sf:select type="number" path="categoryId" id="categoryId"
 										class="form-control" items="${categories}" itemLabel="name"
 										itemValue="id" />
+
+
+									<c:if test="${product.id == 0}">
+										<div class="text-right">
+											<br />
+											<button type="button" class="btn btn-light btn-sm"
+												data-toggle="modal" data-target="#myCategoryModal">Add
+												New Category</button>
+										</div>
+									</c:if>
+
 								</div>
 							</div>
 						</div>
@@ -162,7 +173,6 @@
 	</div>
 
 
-
 	<div class="card bg-light text-dark mt-4 mb-2">
 		<div class="card-body">Available Products</div>
 	</div>
@@ -171,8 +181,10 @@
 		<div class="col-12">
 			<!-- Product table for admin -->
 			<div style="overflow: auto">
-<!-- 				<table id="adminProductsTable" class="table table-condensed table-bordered"> -->
-				<table id="adminProductsTable" class="table table-striped" data-toggle="table" data-pagination="true" data-search="true" style="width: 100%">
+				<!-- 				<table id="adminProductsTable" class="table table-condensed table-bordered"> -->
+				<table id="adminProductsTable" class="table table-striped"
+					data-toggle="table" data-pagination="true" data-search="true"
+					style="width: 100%">
 
 					<thead>
 						<tr>
@@ -186,7 +198,7 @@
 							<th>Edit</th>
 						</tr>
 					</thead>
-					
+
 					<tfoot>
 						<tr>
 							<th>Id</th>
@@ -197,12 +209,62 @@
 							<th>Unit Price</th>
 							<th>Activate</th>
 							<th>Edit</th>
-					   </tr>
-				   </tfoot>
+						</tr>
+					</tfoot>
 
 
 				</table>
 			</div>
 		</div>
 	</div>
+
+
+	<div class="modal fade" id="myCategoryModal" role="dialog"
+		tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title">Add New Category</h6>
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<!-- Category form -->
+					<sf:form modalAttribute="category"
+						action="${contextRoot}/manage/category" method="POST"
+						class="form-horizontal">
+
+						<div class="form-group">
+							<label for="category_name" class="control-label col-md-4">
+								Category Name
+							</label>
+							<div class="col-md-8">
+								<sf:input type="text" path="name" id="category_name" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="category_description" class="control-label col-md-4">
+								Category Description
+							</label>
+							<div class="col-md-8">
+								<sf:textarea type="text" cols="" rows="" path="description" id="category_description" class="form-control"/>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<input type="submit" value="Add Category" class="btn btn-primary"/>
+							</div>
+						</div>
+
+					</sf:form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
 </div>
