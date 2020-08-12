@@ -139,7 +139,7 @@ public class ManagementController {
 
 	
 	//handle category submission
-	@RequestMapping(value="/category, method=RequestMethod.POST")
+	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	public String handleCategorySubmission(@ModelAttribute Category category) {
 		//add new category
 		categoryDAO.add(category);

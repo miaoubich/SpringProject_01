@@ -231,7 +231,7 @@
 				</div>
 				<div class="modal-body">
 					<!-- Category form -->
-					<sf:form modalAttribute="category"
+					<sf:form id="categoryForm" modelAttribute="category"
 						action="${contextRoot}/manage/category" method="POST"
 						class="form-horizontal">
 
@@ -240,7 +240,7 @@
 								Category Name
 							</label>
 							<div class="col-md-8">
-								<sf:input type="text" path="name" id="category_name" class="form-control"/>
+								<sf:input type="text" path="name" id="category_name" placeholder="Set a Category Name" class="form-control"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -248,7 +248,7 @@
 								Category Description
 							</label>
 							<div class="col-md-8">
-								<sf:textarea type="text" cols="" rows="" path="description" id="category_description" class="form-control"/>
+								<sf:textarea type="text" cols="" rows="" path="description" placeholder="Some Description ..." id="category_description" class="form-control"/>
 							</div>
 						</div>
 						
