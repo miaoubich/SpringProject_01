@@ -25,6 +25,47 @@ $(function() {
 		break;
 	}
 
+	/*
+	 * Category form validation
+	 */
+	var $catForm = $("#categoryForm");
+	if ($catForm.length) {
+
+		$catForm.validate({
+
+			rules : {
+				name : {
+					required : true,
+					minlength : 3
+				},
+				description : {
+					required : true
+				}
+			},
+			
+			messages : {
+				name : {
+					required: 'Category dname is mandatory!',
+					minlength: 'Name should not be less than 3 characters!'
+				},
+				description: {
+					required: 'Description for the category is Mandatory!'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error, element){
+				//adding the class help-block
+				error.addClass('help-block');
+				//place the error element after the input and textarea fields
+				error.insertAfter(element);
+			}
+		
+
+		});
+
+	}
+
 	// code for jquery table
 	var $table = $('#productListTable');
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
@@ -170,19 +211,20 @@ $(function() {
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
 	if ($adminTable.length) {
 		console.log('Inside the ADMIN products table !');
-	
+
 		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
 
-		$adminTable.DataTable({
+		$adminTable
+				.DataTable({
 					lengthMenu : [
 							[ 10, 30, 100, -1 ],
 							[ '10 Records', '30 Records', '100 Records', 'All' ] ],
 					pageLength : 30,
 					ajax : {
-							url : jsonUrl,
-							dataSrc : '' // because there is no column name in
-										 // post man
-							},
+						url : jsonUrl,
+						dataSrc : '' // because there is no column name in
+					// post man
+					},
 					columns : [
 							{
 								data : 'id'
@@ -235,7 +277,7 @@ $(function() {
 										str += '<input type="checkbox" value="'
 												+ row.id + '" />';
 									str += '<div class="slider"></div></label>';
-									
+
 									return str;
 								}
 							},
@@ -243,65 +285,94 @@ $(function() {
 								data : 'id',
 								bSortable : false,
 								mRender : function(data, type, row) {
-											var str = '';
-											str += '<a href="'+ window.contextRoot +'/manage/'+data+'/product">';
-											str += '<i class="fas fa-pencil-alt"></i></a>';
-													
-											return str;
-										}
+									var str = '';
+									str += '<a href="' + window.contextRoot
+											+ '/manage/' + data + '/product">';
+									str += '<i class="fas fa-pencil-alt"></i></a>';
 
-							} 
-								
-							],
-							
-							/*
-							 *  We user this init complete property to catch the data after it 
-							 * finish loading in the table and get the entire api for the dataTable
-							 * that we can apply the evenst handling functions for the switch
-							 * 
-							 * */
-							
-							initComplete: function(){
-								
-								var api = this.api();
-								api.$(".switch input[type='checkbox']")
-									.on("change", function() {
+									return str;
+								}
+
+							}
+
+					],
+
+					/*
+					 * We user this init complete property to catch the data
+					 * after it finish loading in the table and get the entire
+					 * api for the dataTable that we can apply the evenst
+					 * handling functions for the switch
+					 * 
+					 */
+
+					initComplete : function() {
+
+						var api = this.api();
+						api
+								.$(".switch input[type='checkbox']")
+								.on(
+										"change",
+										function() {
 											var checkbox = $(this);
-											var checked = checkbox.prop('checked');
+											var checked = checkbox
+													.prop('checked');
 											var dialogMessage = (checked) ? 'To activate this product please click OK or Cancel to decline?'
 													: 'To dactivate this product please click OK or Cancel to decline?';
 											var value = checkbox.prop('value');
 
-											bootbox.confirm({
+											bootbox
+													.confirm({
 														size : 'medium',
 														title : 'Product activation & deactivation',
 														message : dialogMessage,
-														callback : function(confirmed) {
+														callback : function(
+																confirmed) {
 
 															if (confirmed) {
-																console.log(value);//value: will be the id of the product
-																
-																var activationUrl = window.contextRoot +'/manage/product/' + value + '/activation';
-																
-																$.post(activationUrl, function(data){
-																	bootbox.alert({
-																		size : 'medium',
-																		title : 'Information',
-																		message : data
-																		});
-																	});
+																console
+																		.log(value);// value:
+																					// will
+																					// be
+																					// the
+																					// id
+																					// of
+																					// the
+																					// product
+
+																var activationUrl = window.contextRoot
+																		+ '/manage/product/'
+																		+ value
+																		+ '/activation';
+
+																$
+																		.post(
+																				activationUrl,
+																				function(
+																						data) {
+																					bootbox
+																							.alert({
+																								size : 'medium',
+																								title : 'Information',
+																								message : data
+																							});
+																				});
 
 															} else {
-																/* 
-																 * back to the previous state
-																 * */
-																checkbox.prop('checked', !checked);// going
+																/*
+																 * back to the
+																 * previous
+																 * state
+																 */
+																checkbox
+																		.prop(
+																				'checked',
+																				!checked);// going
 															}
 														}
 													})
 
 										});
-							}
+					}
 
 				});
 	}

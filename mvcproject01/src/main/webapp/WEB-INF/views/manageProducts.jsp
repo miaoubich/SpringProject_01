@@ -236,25 +236,31 @@
 						class="form-horizontal">
 
 						<div class="form-group">
-							<label for="category_name" class="control-label col-md-4">
-								Category Name
-							</label>
-							<div class="col-md-8">
-								<sf:input type="text" path="name" id="category_name" placeholder="Set a Category Name" class="form-control"/>
+							<div class="row">
+								<label for="category_name" class="control-label col-md-4">
+									Category Name: </label>
+								<div class="col-md-8">
+									<sf:input type="text" path="name" id="category_name"
+										placeholder="enter a category name" class="form-control" />
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="category_description" class="control-label col-md-4">
-								Category Description
-							</label>
-							<div class="col-md-8">
-								<sf:textarea type="text" cols="" rows="" path="description" placeholder="Some Description ..." id="category_description" class="form-control"/>
+							<div class="row">
+								<label for="category_description" class="control-label col-md-4">
+									Category Description: </label>
+								<div class="col-md-8">
+									<sf:textarea type="text" cols="" rows="" path="description"
+										placeholder="enter category description ..." id="category_description"
+										class="form-control" />
+								</div>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="col-md-offset-4 col-md-8">
-								<input type="submit" value="Add Category" class="btn btn-primary"/>
+								<input type="submit" value="Add Category"
+									class="btn btn-primary" />
 							</div>
 						</div>
 

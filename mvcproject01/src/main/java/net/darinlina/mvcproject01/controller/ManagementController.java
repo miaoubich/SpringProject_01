@@ -45,53 +45,54 @@ public class ManagementController {
 		mv.addObject("title", "Manage Products");
 		Product nProduct = new Product();
 
-		//each time a product is created it will be set to active is true and supplierId to '1'
-		//That we can generate the code field for the img name
+		// each time a product is created it will be set to active is true and
+		// supplierId to '1'
+		// That we can generate the code field for the img name
 		nProduct.setSupplierId(1);
 		nProduct.setActive(true);
 
 		mv.addObject("product", nProduct);
 
 		if (operation != null) {
-			if(operation.equals("newProduct")) 
+			if (operation.equals("newProduct"))
 				mv.addObject("message", "Product has been added successfully!");
 			else if (operation.equals("updateProduct"))
 				mv.addObject("updateMessage", "Product has been updated successfully!");
-			else if (operation.equals("category")) 
-				mv.addObject("updateMessage", "Category has been updated successfully!");
+			else if (operation.equals("category"))
+				mv.addObject("message", "Category has been updated successfully!");
 		}
-		
+
 		return mv;
 	}
-	
-	@RequestMapping(value="/{id}/product", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}/product", method = RequestMethod.GET)
 	public ModelAndView showManageEditProduct(@PathVariable int id) {
 
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("userClickManageProducts", true);
 		mv.addObject("title", "Manage Products");
-		//Fetch product from the database
+		// Fetch product from the database
 		Product nProduct = productDAO.get(id);
-		//Set the product that was fetched
+		// Set the product that was fetched
 		mv.addObject("product", nProduct);
 		return mv;
 	}
-	
+
 	// Handling product submission
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product nProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
 		boolean newProduct = false;
-		
+
 		// To check the image error message
-		if(nProduct.getId() == 0)
-			//Handle image validator for a new product
+		if (nProduct.getId() == 0)
+			// Handle image validator for a new product
 			new ProductValidator().validate(nProduct, results);
 		else
-			////Handle image validator for to update a product image
-			if(!nProduct.getFile().getOriginalFilename().equals(""))
-				new ProductValidator().validate(nProduct, results);
+		//// Handle image validator for to update a product image
+		if (!nProduct.getFile().getOriginalFilename().equals(""))
+			new ProductValidator().validate(nProduct, results);
 
 		// check if there any errors
 		if (results.hasErrors()) {
@@ -104,12 +105,12 @@ public class ManagementController {
 
 		logger.info(nProduct.toString());
 
-		if(nProduct.getId() == 0) {
+		if (nProduct.getId() == 0) {
 			// create a new product record
 			productDAO.add(nProduct);
 			newProduct = true;
-		}else
-			//Update existing product by its id
+		} else
+			// Update existing product by its id
 			productDAO.update(nProduct);
 
 		if (!nProduct.getFile().getOriginalFilename().contentEquals("")) {
@@ -117,7 +118,7 @@ public class ManagementController {
 																							// real path of the image
 		}
 
-		if(newProduct)
+		if (newProduct)
 			return "redirect:/manage/products?operation=newProduct";
 		else
 			return "redirect:/manage/products?operation=updateProduct";
@@ -137,21 +138,20 @@ public class ManagementController {
 				: "Product with id " + product.getId() + " was activated successfully";
 	}
 
-	
-	//handle category submission
+	// handle category submission
 	@RequestMapping(value = "/category", method = RequestMethod.POST)
 	public String handleCategorySubmission(@ModelAttribute Category category) {
-		//add new category
+		// add new category
 		categoryDAO.add(category);
-		
-		return "redirect:/manage/product?operation=category";
+
+		return "redirect:/manage/products?operation=category";
 	}
-	
-	@ModelAttribute("category") //should be the same as in the form (modalAttribute="category")
+
+	@ModelAttribute("category") // should be the same as in the form (modalAttribute="category")
 	public Category getCategory() {
 		return new Category();
 	}
-	
+
 	// returning categories for all the request mapping
 	@ModelAttribute("categories")
 	public List<Category> getCategories() {

@@ -87,6 +87,8 @@
 
 		<!-- core jquery v3.4.1-->
 		<script src="${js}/jquery.min.js"></script>
+		<!-- core jquery  validation-->
+		<script src="${js}/jquery.validate.js"></script>
 		<!-- Bootstrap core JavaScript -->
 		<script src="${js}/bootstrap.min.js"></script>
 		<script src="${js}/popper.min.js"></script>
