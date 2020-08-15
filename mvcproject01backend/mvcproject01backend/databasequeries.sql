@@ -76,3 +76,19 @@ INSERT INTO product (code, name, brand, description, unit_price, quantity, is_ac
 VALUES ('PRDMNO123PQRX', 'Didactic puzzle', 'Dens', 'A didactic puzzle to help your child practice precision and concentration by inserting different shapes into specific openings.', 10, 30, true, 6, 4, 0, 0 );
 INSERT INTO product (code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES ('PRDABCXYZDEFX', 'HAS: NERF N STRIKE ELITE', 'Nerf', 'Nerf launcher. Fully automatic 27-meter blaster. Suitable for 8 years.', 55, 5, true, 7, 1, 0, 0 );
+
+
+CREATE TABLE Address(
+			id IDENTITY,
+			address_line_one VARCHAR(255),
+			address_line_two VARCHAR(255),
+			city VARCHAR(50),
+			state VARCHAR(50),
+			country VARCHAR(50),
+			shipping BOOLEAN,
+			billing BOOLEAN,
+			
+			CONSTRAINT pk_id PRIMARY KEY(id),
+			CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_detail (id)
+
+		);
