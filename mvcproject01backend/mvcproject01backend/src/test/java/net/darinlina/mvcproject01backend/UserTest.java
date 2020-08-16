@@ -37,7 +37,7 @@ public class UserTest {
 		user.setRole("USER");
 		user.setPassword("8520");
 		
-		assertEquals("User has been added successfully", true, userDAO.addUser(user));
+		assertEquals("Failed to add a User", true, userDAO.addUser(user));
 	
 		address = new Address();
 		address.setAddressLineOne("this is address one !");
@@ -51,15 +51,15 @@ public class UserTest {
 		//link the created user with its address using userId
 		address.setUserId(user.getId());
 		
-		assertEquals("Address has been added successfully", true, userDAO.addAddress(address));
+		assertEquals("Failed to add the Address", true, userDAO.addAddress(address));
 		
 		if(user.getRole().equals("USER")) {
 			
 			//Create a cart for this user
 			cart = new Cart();
-			cart.setUserId(user.getId());
+			cart.setUser(user);
 			
-			assertEquals("Cart has been added successfully", true, userDAO.addCart(cart));
+			assertEquals("Failed to add a cart", true, userDAO.addCart(cart));
 			
 			//add a shipping address for this user
 			address = new Address();
