@@ -7,8 +7,9 @@ import net.darinline.mvcproject01backend.dto.User;
 public interface UserDAO {
 
 	boolean addUser(User user);
+	User getByEmail(String email);
 	
 	boolean addAddress(Address address);
 	
-	boolean addCart(Cart cart);
+	boolean updateCart(Cart cart);
 }

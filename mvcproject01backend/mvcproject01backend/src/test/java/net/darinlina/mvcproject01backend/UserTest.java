@@ -1,6 +1,7 @@
 package net.darinlina.mvcproject01backend;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,16 +19,16 @@ public class UserTest {
 	private User user = null;
 	private Address address = null;
 	private Cart cart = null;
-	
+
 	@BeforeClass
 	public static void beforeClass() {
-		context = new  AnnotationConfigApplicationContext();
+		context = new AnnotationConfigApplicationContext();
 		context.scan("net.darinlina.mvcproject01backend");
 		context.refresh();
 		userDAO = (UserDAO) context.getBean("userDAO");
 	}
-	
-	@Test
+
+//	@Test
 	public void testAdd() {
 		user = new User();
 		user.setFirstName("Enrik");
@@ -36,49 +37,32 @@ public class UserTest {
 		user.setContactNumber("0998654495");
 		user.setRole("USER");
 		user.setPassword("8520");
-		
-		assertEquals("Failed to add a User", true, userDAO.addUser(user));
-	
-		address = new Address();
-		address.setAddressLineOne("this is address one !");
-		address.setAddressLineTwo("this is address line two !");
-		address.setCity("Split");
-		address.setState("Dalmacia");
-		address.setCountry("Hrvatska");
-		address.setPostalCode("21000");
-		address.setBilling(true);
-		
-		//link the created user with its address using userId
-		address.setUserId(user.getId());
-		
-		assertEquals("Failed to add the Address", true, userDAO.addAddress(address));
-		
-		if(user.getRole().equals("USER")) {
-			
-			//Create a cart for this user
+
+		if (user.getRole().equals("USER")) {
+			// Create a cart for this user
 			cart = new Cart();
 			cart.setUser(user);
-			
-			assertEquals("Failed to add a cart", true, userDAO.addCart(cart));
-			
-			//add a shipping address for this user
-			address = new Address();
-			address.setAddressLineOne("this is shipping address one !");
-			address.setAddressLineTwo("this is shipping address line two !");
-			address.setCity("Korčula");
-			address.setState("Dubravačka");
-			address.setCountry("Hrvatska");
-			address.setPostalCode("20260");
-			//set shipping true
-			address.setShipping(true);
-			
-			//link i tto this user
-			address.setUserId(user.getId());
-			
-			assertEquals("Shipping address has been added successfully", true, userDAO.addAddress(address));
-			
-			
+
+			// attach cart with the user
+			user.setCart(cart);
 		}
+		//add the user
+		assertEquals("Failed to add the user", true, userDAO.addUser(user));
+		
+
+	}
 	
+	@Test
+	public void updateCartTest() {
+		//get the user by its email
+		user = userDAO.getByEmail("enrik.bouzar@gmail.com");
+		//get the cart of this user
+		cart = user.getCart();
+		
+		//update the cart
+		cart.setCartLines(3);
+		cart.setGrandTotal(2222);
+		
+		assertTrue(userDAO.updateCart(cart));
 	}
 }

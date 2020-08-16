@@ -62,7 +62,7 @@ public class HibernateConfig {
 		// if second property is create table will create, if it already 
 		// exists it will drop it and create new one
 		// if it is update, it will update it
-		properties.put("hibernate.hbm2ddl.auto", "create");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		
 		return properties;
 	}

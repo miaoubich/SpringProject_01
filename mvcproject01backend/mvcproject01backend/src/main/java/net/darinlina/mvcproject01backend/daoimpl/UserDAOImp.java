@@ -1,6 +1,5 @@
 package net.darinlina.mvcproject01backend.daoimpl;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ public class UserDAOImp implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserDAOImp.class);
 
 	@Override
@@ -45,13 +44,26 @@ public class UserDAOImp implements UserDAO {
 	}
 
 	@Override
-	public boolean addCart(Cart cart) {
+	public boolean updateCart(Cart cart) {
 		try {
-			sessionFactory.getCurrentSession().persist(cart);
+			sessionFactory.getCurrentSession().update(cart);
 			return true;
 		} catch (Exception e) {
 			logger.error("addCart: ", e);
 			return false;
+		}
+	}
+
+	@Override
+	public User getByEmail(String email) {
+		String selectQuery = "FROM User WHERE email = :email";
+		try {
+			
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class)
+						.setParameter("email", email).getSingleResult();
+		}catch(Exception e) {
+			logger.error("getByEmail", e);
+			return null;
 		}
 	}
 
