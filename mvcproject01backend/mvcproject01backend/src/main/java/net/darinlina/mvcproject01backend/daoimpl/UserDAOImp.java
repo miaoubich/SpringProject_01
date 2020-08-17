@@ -1,5 +1,7 @@
 package net.darinlina.mvcproject01backend.daoimpl;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,7 +64,34 @@ public class UserDAOImp implements UserDAO {
 			return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class)
 						.setParameter("email", email).getSingleResult();
 		}catch(Exception e) {
-			logger.error("getByEmail", e);
+			logger.error("getByEmail", e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public Address getBillingAddress(User user) {
+		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
+		try {
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Address.class)
+					.setParameter("user", user).setParameter("billing", true)
+					.getSingleResult();
+		} catch (Exception e) {
+			logger.error("getBillingAddress", e.getMessage());
+			return null;
+		}
+	}
+
+	@Override
+	public List<Address> listShippingAddresses(User user) {
+		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
+		try {
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Address.class)
+					.setParameter("user", user)
+					.setParameter("shipping", true)
+					.getResultList();
+		} catch (Exception e) {
+			logger.error("listShippingAddresses", e.getMessage());
 			return null;
 		}
 	}
