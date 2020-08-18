@@ -45,4 +45,17 @@
 	<wf:flow-builder-services id="flowBuilderServices" 
 		view-factory-creator="viewFactoryCreator"/>
 
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor"/>
+	</bean>
+	
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry"/>
+		<property name="order" value="-1s"/>
+	</bean>
+	
+	<bean id="viewFactoryCreator" 
+			class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers" ref="viewResolver" />
+	</bean>
 </beans>
