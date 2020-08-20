@@ -20,7 +20,17 @@
 					href="${contextRoot}/about">About</a></li>
 				<li class="nav-item" id="contact"><a class="nav-link"
 					href="${contextRoot}/contact">Contact</a></li>
+					
+				
+				<li class="nav-item" id="login">
+					<a href="login" class="nav-link">Sign In</a>
+				</li>	
+				<li class="nav-item" id="register">
+					<a href="${contextRoot}/register" class="nav-link">Sign Up</a>
+				</li>
 			</ul>
+			
+			
 		</div>
 
 	</div>
