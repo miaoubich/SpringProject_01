@@ -1,5 +1,7 @@
 package net.darinline.mvcproject01backend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +13,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_detail")
-public class User {
-
+public class User implements Serializable{
+	/*We implement Serializable because we are storing data 
+	*from the flow scope provided by spring flow and to 
+	*prevent a serializable exception
+	**/
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

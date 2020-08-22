@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:schemaLocation="http://www.springframework.org/schema/webflow
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
 	  					  http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-		<!-- The start state -->
-		<view-state id="personal" view="flows/register/signup-personal"></view-state>
-		
-		<!-- The end state -->
-		<end-state id="home1" view="externalRedirect:contextRelative:/" />
-		
-		<!-- Global transition to break the flow and move to the home page -->
-		<global-transitions>
-			<transition on="home" to="home1"/>
-		</global-transitions>
-		
+
+	<var name="user" class="net.darinline.mvcproject01backend.dto.User" />
+	<var name="billing" class="net.darinline.mvcproject01backend.dto.Address" />
+	
+	<!-- The start state -->
+	<view-state id="personalView" view="flows/register/signup-personal" model="user">
+			<transition on="billing" to="billingView"/>	
+		</view-state>
+
+	<view-state id="billingView" view="flows/register/signup-billing" model="billing">
+		<transition on="personal" to="personalView"/>
+		<transition on="confirm" to="confirmView"/>
+	</view-state>
+
+	<view-state id="confirmView" view="flows/register/signup-confirm">
+		<transition on="personal" to="personalView"/>
+		<transition on="billing" to="billingView"/>
+		<transition on="success" to="successView"/>
+	</view-state>
+
+	<!-- The end state -->
+	<end-state id="homePage" view="externalRedirect:contextRelative:/" />
+	<view-state id="successView" view="flows/register/signup-success" />
+
+	<!-- Global transition to break the flow and move to the home page -->
+	<global-transitions>
+		<transition on="home" to="homePage" />
+	</global-transitions>
+
 </flow>

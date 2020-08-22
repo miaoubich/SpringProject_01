@@ -1,5 +1,7 @@
 package net.darinline.mvcproject01backend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +11,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Cart {
+public class Cart implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	/*******************/
 	@OneToOne
-	@JoinColumn(name = "uId")// personalise the column name of the userId which a fK, by default is user_id
+	@JoinColumn(name = "uId") // personalise the column name of the userId which a fK, by default is user_id
 	private User user;
 
 	public User getUser() {
