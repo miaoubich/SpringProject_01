@@ -14,10 +14,10 @@
 			
 				<div class="card-body">
 					<div class="">
-						<h5>Name : <strong>${registerModel.user.firstName} ${registerModel.user.lastName}</strong></h5>
-						<h5>Email : <strong>${registerModel.user.email}</strong></h5>
-						<h5>Contact : <strong>${registerModel.user.contactNumber}</strong></h5>
-						<h5>Role : <strong>${registerModel.user.role}</strong></h5>
+						<p>Name: <strong>${registerModel.user.firstName} ${registerModel.user.lastName}</strong></p>
+						<p>Email: <strong>${registerModel.user.email}</strong></p>
+						<p>Contact: <strong>${registerModel.user.contactNumber}</strong></p>
+						<p>Role: <strong>${registerModel.user.role}</strong></p>
 						<p>
 							<a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">Edit</a>
 						</p>
@@ -38,10 +38,10 @@
 				</div>
 			
 				<div class="card-body">
-					<div class="">
-						<p>${registerModel.billing.addressLineOne}, </p>
-						<p>${registerModel.billing.addressLineTwo}, </p>
-						<p>${registerModel.billing.city} -  ${registerModel.billing.postalCode}, </p>
+					<div class="text-center">
+						<p>${registerModel.billing.addressLineOne}</p>
+						<p>${registerModel.billing.addressLineTwo}</p>
+						<p>${registerModel.billing.city} -  ${registerModel.billing.postalCode} </p>
 						<p>${registerModel.billing.state}</p>
 						<p>${registerModel.billing.country}</p>
 						<p>

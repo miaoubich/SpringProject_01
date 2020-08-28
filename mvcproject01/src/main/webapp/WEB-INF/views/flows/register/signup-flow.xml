@@ -6,27 +6,41 @@
 
 
 	<var name="user" class="net.darinline.mvcproject01backend.dto.User" />
-	<var name="billing" class="net.darinline.mvcproject01backend.dto.Address" />
-	
+	<var name="billing"
+		class="net.darinline.mvcproject01backend.dto.Address" />
+
+	<!-- Add a registerModel instance inside the flow -->
+	<on-start>
+		<evaluate expression="registerHandler.init()" result="flowScope.registerModel" />
+	</on-start>
+
 	<!-- The start state -->
 	<view-state id="personalView" view="flows/register/signup-personal" model="user">
-			<transition on="billing" to="billingView"/>	
-		</view-state>
-
-	<view-state id="billingView" view="flows/register/signup-billing" model="billing">
-		<transition on="personal" to="personalView"/>
-		<transition on="confirm" to="confirmView"/>
+		<transition on="billing" to="billingView" />
+		<on-exit>
+			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" />			
+		</on-exit>
 	</view-state>
 
-	<view-state id="confirmView" view="flows/register/signup-confirm">
-		<transition on="personal" to="personalView"/>
-		<transition on="billing" to="billingView"/>
-		<transition on="success" to="successView"/>
+	<view-state id="billingView" view="flows/register/signup-billing" model="billing">
+		<transition on="personal" to="personalView" />
+		<transition on="confirm" to="confirmView" />
+		<on-exit>
+			<evaluate expression="registerHandler.addBilling(flowScope.registerModel, billing)" />
+		</on-exit>
+	</view-state>
+
+	<view-state id="confirmView" view="flows/register/signup-confirm" model="flowScope.registerModel"> 
+		<transition on="personal" to="personalView" />
+		<transition on="billing" to="billingView" />
+		<transition on="success" to="successView" />
 	</view-state>
 
 	<!-- The end state -->
-	<end-state id="homePage" view="externalRedirect:contextRelative:/" />
-	<view-state id="successView" view="flows/register/signup-success" />
+	<end-state id="homePage"
+		view="externalRedirect:contextRelative:/" />
+	<view-state id="successView"
+		view="flows/register/signup-success" />
 
 	<!-- Global transition to break the flow and move to the home page -->
 	<global-transitions>
