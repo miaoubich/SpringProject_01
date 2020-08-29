@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Address")
 public class Address implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +42,15 @@ public class Address implements Serializable{
 	private boolean shipping;
 	private boolean billing;
 	
+//	@Column(name = "user_id")
+//	private int userId;
+//
+//	public int getUserId() {
+//		return userId;
+//	}
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 	
 	public int getId() {
 		return id;
