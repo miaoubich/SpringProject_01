@@ -36,8 +36,6 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="addressLineTwo" class="form-control"
 									placeholder="Enter Address Line Two" />
-								<sf:errors path="addressLineTwo" cssClass="help-block"
-									element="em" />
 							</div>
 						</div>
 

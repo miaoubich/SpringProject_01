@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Address")
@@ -31,12 +32,17 @@ public class Address implements Serializable{
 	}
 	
 	@Column(name = "address_line_one")
+	@NotBlank(message = "Mandatory field")
 	private String addressLineOne;
 	@Column(name = "address_line_two")
 	private String addressLineTwo;
+	@NotBlank(message = "Mandatory field")
 	private String city;
+	@NotBlank(message = "Mandatory field")
 	private String state;
+	@NotBlank(message = "Mandatory field")
 	private String country;
+	@NotBlank(message = "Mandatory field")
 	@Column(name = "postal_code")
 	private String postalCode;
 	private boolean shipping;

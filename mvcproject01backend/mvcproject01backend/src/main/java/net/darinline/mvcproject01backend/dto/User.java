@@ -3,6 +3,8 @@ package net.darinline.mvcproject01backend.dto;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+
 
 @Entity
 @Table(name = "user_detail")
@@ -18,14 +20,19 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "first_name")
+	@NotBlank(message = "Mandatory field")
 	private String firstName;
 	@Column(name = "last_name")
+	@NotBlank(message = "Mandatory field")
 	private String lastName;
+	@Email
 	private String email;
 	@Column(name = "contact_number")
+	@NotBlank(message = "Mandatory field")
 	private String contactNumber;
 	private String role;
 	//@Transient // states to the spring framework that the Object Mapper you are using should not include this password value when converting from Java Object to JSON.
+	@NotBlank(message = "Mandatory field")
 	private String password;
 	private boolean enabled = true;
 	// user_detailed is the parent table and the cart table is child
