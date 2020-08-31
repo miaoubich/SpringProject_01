@@ -1,6 +1,8 @@
 package net.darinlina.mvcproject01.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.binding.message.MessageBuilder;
+import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
 
 import net.darinlina.mvcproject01.model.RegisterModel;
@@ -25,6 +27,26 @@ public class RegisterHandler {
 	
 	public void addBilling(RegisterModel registerModel, Address billing) {
 		registerModel.setBilling(billing);
+	}
+	
+	public String validateUser(User user, MessageContext error) {
+		
+		String transitionValue ="success";
+		
+		if(!(user.getPassword().equals(user.getConfirmPassword()))) {
+			error.addMessage(new MessageBuilder().error().source("confirmPassword").defaultText("Passwords doen't match!").build());
+			
+			transitionValue = "failure";
+		}
+		
+		//Check if email doesn't exist
+		if(userDAO.getByEmail(user.getEmail()) != null) {
+			error.addMessage(new MessageBuilder().error().source("email").defaultText("This email is already been used!").build());
+			
+			transitionValue = "failure";
+		}
+		
+		return transitionValue;
 	}
 	
 	public String saveAll(RegisterModel model) {

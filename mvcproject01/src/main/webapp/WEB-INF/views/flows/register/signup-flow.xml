@@ -16,11 +16,17 @@
 
 	<!-- The start state -->
 	<view-state id="personalView" view="flows/register/signup-personal" model="user">
-		<transition on="billing" to="billingView" />
+		<transition on="billing" to="validate" />
 		<on-exit>
 			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" />			
 		</on-exit>
 	</view-state>
+
+	<action-state id="validate">
+		<evaluate expression="registerHandler.validateUser(user, messageContext)"/>
+		<transition on="success" to="billingView"/>
+		<transition on="failure" to="personalView"/>
+	</action-state>
 
 	<view-state id="billingView" view="flows/register/signup-billing" model="billing">
 		<transition on="personal" to="personalView" />

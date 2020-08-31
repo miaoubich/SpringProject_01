@@ -31,8 +31,11 @@ public class User implements Serializable{
 	@NotBlank(message = "Mandatory field")
 	private String contactNumber;
 	private String role;
-	//@Transient // states to the spring framework that the Object Mapper you are using should not include this password value when converting from Java Object to JSON.
 	@NotBlank(message = "Mandatory field")
+	//@Transient // states to the spring framework that the Object Mapper you are using should not include this password value when converting from Java Object to JSON.
+	@Transient
+	private String confirmPassword;
+
 	private String password;
 	private boolean enabled = true;
 	// user_detailed is the parent table and the cart table is child
@@ -41,6 +44,13 @@ public class User implements Serializable{
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Cart cart;
 
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 	public Cart getCart() {
 		return cart;
 	}
