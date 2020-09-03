@@ -112,5 +112,21 @@ public class PageController {
 
 		return mv;
 	}
+	
+	@RequestMapping( value = "/register")
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "About Us");
+		
+		return mv;
+	}
+	
+	@RequestMapping( value = "/login")
+	public ModelAndView login() {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("title", "login");
+		
+		return mv;
+	}
 
 }

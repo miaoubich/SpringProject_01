@@ -376,5 +376,47 @@ $(function() {
 
 				});
 	}
+	
+	
+	/**********************************
+	 * Validation for login form      *
+	 *                                *
+	 * ********************************/
+	var $loginForm = $("#loginForm");
+	if ($loginForm.length) {
 
+		$loginForm.validate({
+
+			rules : {
+				username : {
+					required : true,
+					email : true
+				},
+				password : {
+					required : true
+				}
+			},
+			
+			messages : {
+				username : {
+					required: 'Mandatory field',
+					email: 'Email address is not valid!'
+				},
+				password: {
+					required: 'Mandatory field'
+				}
+			},
+			
+			errorElement: 'em',
+			errorPlacement: function(error, element){
+				//adding the class help-block
+				error.addClass('help-block');
+				//place the error element after the input and textarea fields
+				error.insertAfter(element);
+			}
+		
+
+		});
+
+	}
 });
