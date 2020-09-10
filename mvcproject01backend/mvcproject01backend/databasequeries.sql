@@ -25,12 +25,13 @@ CREATE TABLE user_detail(
 	last_name VARCHAR(50),
 	role VARCHAR(50),
 	enabled BOOLEAN,
-	password VARCHAR(50),
+	password VARCHAR(60),
 	email VARCHAR(100),
 	contact_number VARCHAR(15),
 	
 	CONSTRAINT pk_user_id PRIMARY KEY(id)
 );
+2304, 1512, 0203, 3107, 1201
 
 INSERT INTO user_detail(first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Ali', 'Split', 'Admin', 'true', '2304', 'darin@home.com', '0998877665544');
@@ -39,10 +40,10 @@ INSERT INTO user_detail(first_name, last_name, role, enabled, password, email, c
 VALUES ('Bilja', 'Split', 'Supplier', 'true', '1512', 'lina@home.com', '01122334455');
 
 INSERT INTO user_detail(first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Darin', 'Split', 'Supplier', 'true', '0203', 'darin_01@home.com', '01952364587');
+VALUES ('Darin', 'Split', 'USER', 'true', '0203', 'darin_01@home.com', '01952364587');
 
 INSERT INTO user_detail(first_name, last_name, role, enabled, password, email, contact_number) 
-VALUES ('Lina', 'Split', 'Supplier', 'true', '3107', 'lina_01@home.com', '094447855633');
+VALUES ('Lina', 'Split', 'USER', 'true', '3107', 'lina_01@home.com', '094447855633');
 
 INSERT INTO user_detail(first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Offline', 'Split', 'Supplier', 'false', '1201', 'home_01@home.com', '091111111111');
@@ -97,7 +98,7 @@ CREATE TABLE Address(
 From hibernate:
 ***************
 
- INFO  HHH000412: Hibernate Core {5.2.7.Final} 17:52:08.957 org.hibernate.Version 
+INFO  HHH000412: Hibernate Core {5.2.7.Final} 17:52:08.957 org.hibernate.Version 
 INFO  HHH000206: hibernate.properties not found 17:52:08.965 org.hibernate.cfg.Environment 
 INFO  HCANN000001: Hibernate Commons Annotations {5.0.1.Final} 17:52:09.039 o.h.annotations.common.Version 
 INFO  HHH000400: Using dialect: org.hibernate.dialect.H2Dialect 17:52:09.515 org.hibernate.dialect.Dialect 

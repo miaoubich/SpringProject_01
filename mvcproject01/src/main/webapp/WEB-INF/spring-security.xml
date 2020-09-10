@@ -17,9 +17,11 @@
 	<http pattern = "/resources/**" security = "none" />
 
 	<http>
-		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/**" access="hasRole('USER')" />
-		<form-login login-page="/login"/>
+		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" />
+		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
+		<intercept-url pattern="/**" access="permitAll" />
+		<form-login login-page="/login" />
+		<access-denied-handler error-page="/access-denied" />
 		<logout />
 	</http>
 
@@ -28,11 +30,16 @@
 <!-- 			<user-service> -->
 <!-- 				<user name="Ali" password="{noop}19810423" authorities="ROLE_USER, ROLE_ADMIN" /> -->
 <!-- 			</user-service> -->
+			<password-encoder ref="pwdEncoder" />
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select email, password, enabled from user_detail where email=?"
 				authorities-by-username-query="select email, role from user_detail where email=?" 
 			/>
 		</authentication-provider>
 	</authentication-manager>
+	
+	<beans:bean id="pwdEncoder" 
+	  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</beans:bean>
 
 </beans:beans>

@@ -66,6 +66,20 @@ $(function() {
 
 	}
 
+	//to tackle the csrf token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	//xht means xmlHttpRequest
+	if(token.length > 0 && header.length > 0){
+		
+		//set the token header for ajax request
+		$(document).ajaxSend(function(e, xhr, options){
+			xhl.setRequestHeader(header, token);
+		});
+	}
+	
+	
 	// code for jquery table
 	var $table = $('#productListTable');
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE

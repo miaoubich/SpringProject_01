@@ -3,6 +3,7 @@ package net.darinlina.mvcproject01.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import net.darinlina.mvcproject01.model.RegisterModel;
@@ -16,6 +17,9 @@ public class RegisterHandler {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder pwdEncoder;
 	
 	public RegisterModel init() {
 		return new RegisterModel();
@@ -61,6 +65,9 @@ public class RegisterHandler {
 			cart.setUser(user);
 			user.setCart(cart);
 		}
+		
+		//Encode password
+		user.setPassword(pwdEncoder.encode(user.getPassword()));
 		
 		//save user
 		userDAO.addUser(user);

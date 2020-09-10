@@ -45,7 +45,8 @@
 <body>
 	<div class="wrapper">
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+			role="navigation">
 			<div class="container">
 				<!-- toggle brand on mobile mode -->
 				<div class="navbar-header">
@@ -55,14 +56,16 @@
 		</nav>
 
 		<div class="content">
-
-			<c:if test="${not empty message}">
-				<div class="row">
-					<div class="col-xs-12 offset-md-2 col-md-8">
-						<div class="alert alert-danger fade in">${message}</div>
-					</div>
-				</div>
-			</c:if>
+			<!-- 			<div class="container"> -->
+			<%-- 				<c:if test="${not empty message}"> --%>
+			<!-- 					<div class="rows"> -->
+			<!-- 						<div class="alert alert-danger"> -->
+			<!-- 							<button type="button" class="close" data-dismiss="alert">&times;</button> -->
+			<%-- 							<strong style="text: blue"> Error - </strong> ${message} --%>
+			<!-- 						</div> -->
+			<!-- 					</div> -->
+			<%-- 				</c:if> --%>
+			<!-- 			</div> -->
 
 			<c:if test="${not empty logout}">
 				<div class="row">
@@ -75,7 +78,18 @@
 			<div class="row">
 
 				<div class="offset-md-3 col-md-6">
-
+				
+					<div class="container">
+						<c:if test="${not empty message}">
+							<div class="rows">
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong style="text: blue"> Error - </strong> ${message}
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
 					<div class="card">
 
 						<div class="card-header">
@@ -83,27 +97,29 @@
 						</div>
 
 						<div class="card-body">
-							<form action="${contextRoot}/login" method="POST" class="form-horizontal" id="loginForm">
+							<form action="${contextRoot}/login" method="POST"
+								class="form-horizontal" id="loginForm">
 								<div class="form-group row">
-										<label for="username" class="col-md-4 control-label">
-											Email:
-										</label>
-										<div class="col-md-8">
-											<input type="text" name="username" id="username" class="form-control" />
-										</div>
+									<label for="username" class="col-md-4 control-label">
+										Email: </label>
+									<div class="col-md-8">
+										<input type="text" name="username" id="username"
+											class="form-control" />
+									</div>
 								</div>
 								<div class="form-group row">
 									<label for="password" class="col-md-4 control-label">
-										Password:
-									</label>
+										Password: </label>
 									<div class="col-md-8">
-										<input type="password" name="password" id="password" class="form-control" />
+										<input type="password" name="password" id="password"
+											class="form-control" />
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="offset-md-4 col-md-8">
-										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-										<input type="submit" value="Login" class="btn btn-primary" />
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" /> <input type="submit" value="Login"
+											class="btn btn-primary" />
 									</div>
 								</div>
 							</form>
