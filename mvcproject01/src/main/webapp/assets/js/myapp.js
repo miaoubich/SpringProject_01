@@ -24,6 +24,21 @@ $(function() {
 				"background", "#cce6ff");
 		break;
 	}
+	
+	//add border for logged user
+	var $loggedUser = $("#dropdownMenu1");
+	if($loggedUser.length){
+		$loggedUser.hover(
+				function(){
+					$(this).addClass('active').css({
+						'border' : '1px solid #fff'
+					}).css('border-radius', '5px');
+				}, function(){
+					$(this).addClass('').css({
+						'border' : '0px solid #000'
+					});
+				});
+	}
 
 	/*
 	 * Category form validation
