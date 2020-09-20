@@ -67,18 +67,21 @@
 			<%-- 				</c:if> --%>
 			<!-- 			</div> -->
 
-			<c:if test="${not empty logout}">
-				<div class="row">
-					<div class="col-xs-12 offset-md-2 col-md-8">
-						<div class="alert alert-success">${logout}</div>
-					</div>
-				</div>
-			</c:if>
-
 			<div class="row">
 
 				<div class="offset-md-3 col-md-6">
-				
+
+					<div class="container">
+						<c:if test="${not empty logout}">
+							<div class="rows">
+								<div class="alert alert-success">
+									<button type="button" class="close" data-dismiss="alert">&times;</button>
+									<strong style="text: blue"> Error - </strong> ${logout}
+								</div>
+							</div>
+						</c:if>
+					</div>
+					
 					<div class="container">
 						<c:if test="${not empty message}">
 							<div class="rows">
@@ -89,7 +92,7 @@
 							</div>
 						</c:if>
 					</div>
-					
+
 					<div class="card">
 
 						<div class="card-header">

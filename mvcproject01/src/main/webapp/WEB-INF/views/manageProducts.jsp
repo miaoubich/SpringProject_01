@@ -182,39 +182,45 @@
 			<!-- Product table for admin -->
 			<div style="overflow: auto">
 				<!-- 				<table id="adminProductsTable" class="table table-condensed table-bordered"> -->
-				<table id="adminProductsTable" class="table table-striped"
-					data-toggle="table" data-pagination="true" data-search="true"
-					style="width: 100%">
+				<div class="container-fluid">
+					<div class="table-responsive">
+					
+						<table id="adminProductsTable" class="table table-striped"
+							data-toggle="table" data-pagination="true" data-search="true"
+							style="width: 100%">
 
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Name</th>
-							<th>Brand</th>
-							<th>Qty. Available</th>
-							<th>Unit Price</th>
-							<th>Activate</th>
-							<th>Edit</th>
-						</tr>
-					</thead>
+							<thead>
+								<tr>
+									<th>Id</th>
+									<th>&#160;</th>
+									<th>Name</th>
+									<th>Brand</th>
+									<th>Qty. Available</th>
+									<th>Unit Price</th>
+									<th>Activate</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
 
-					<tfoot>
-						<tr>
-							<th>Id</th>
-							<th>&#160;</th>
-							<th>Name</th>
-							<th>Brand</th>
-							<th>Qty. Available</th>
-							<th>Unit Price</th>
-							<th>Activate</th>
-							<th>Edit</th>
-						</tr>
-					</tfoot>
+							<tfoot>
+								<tr>
+									<th>Id</th>
+									<th>&#160;</th>
+									<th>Name</th>
+									<th>Brand</th>
+									<th>Qty. Available</th>
+									<th>Unit Price</th>
+									<th>Activate</th>
+									<th>Edit</th>
+								</tr>
+							</tfoot>
 
-
-				</table>
+						</table>
+						
+					</div>
+				</div>
 			</div>
+			
 		</div>
 	</div>
 
@@ -251,8 +257,8 @@
 									Category Description: </label>
 								<div class="col-md-8">
 									<sf:textarea type="text" cols="" rows="" path="description"
-										placeholder="enter category description ..." id="category_description"
-										class="form-control" />
+										placeholder="enter category description ..."
+										id="category_description" class="form-control" />
 								</div>
 							</div>
 						</div>

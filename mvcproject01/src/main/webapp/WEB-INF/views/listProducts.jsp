@@ -44,35 +44,40 @@
 			<div class="row">
 
 				<div class="col-sm-12">
-					<!-- 				<div class="container mt-2 mb-2"> -->
 
-					<table id="productListTable" class="table table-striped"
-						data-toggle="table" data-pagination="true" data-search="true"
-						style="width: 100%">
+					<div class="container-fluid">
+						<div class="table-responsive">
 
-						<thead>
-							<tr>
-								<!-- 							<th data-sortable="true">ID</th> -->
-								<th></th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Unit Price</th>
-								<th>Qty. Available</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-							<th></th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Unit Price</th>
-								<th>Qty. Available</th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
+							<table id="productListTable" class="table table-striped"
+								data-toggle="table" data-pagination="true" data-search="true"
+								style="width: 100%">
 
+								<thead>
+									<tr>
+										<!-- 							<th data-sortable="true">ID</th> -->
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Unit Price</th>
+										<th>Qty. Available</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Unit Price</th>
+										<th>Qty. Available</th>
+										<th></th>
+									</tr>
+								</tfoot>
+							</table>
+							
+						</div>
+					</div>
+					
 				</div>
 
 			</div>

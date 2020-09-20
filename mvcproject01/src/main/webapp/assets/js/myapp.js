@@ -59,7 +59,7 @@ $(function() {
 
 			messages : {
 				name : {
-					required : 'Category dname is mandatory!',
+					required : 'Category name is mandatory!',
 					minlength : 'Name should not be less than 3 characters!'
 				},
 				description : {
@@ -83,7 +83,7 @@ $(function() {
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
 
-	// xht means xmlHttpRequest
+	// xhr means xmlHttpRequest
 	if (token.length > 0 && header.length > 0) {
 
 		// set the token header for ajax request
@@ -158,22 +158,22 @@ $(function() {
 											+ data
 											+ '/product"><i class="fas fa-eye"></i></a>&nbsp';
 
-									if (row.quantity < 1) {
-										str += '<a style="color:red"><i class="fas fa-shopping-cart"></i></a>';
+									if (userRole == 'ADMIN') {
+										str += '<a href="'
+												+ window.contextRoot
+												+ '/manage/'
+												+ data
+												+ '/product"><i class="fas fa-pencil-alt"></i></a>';
 									} else {
-
-										if (userRole == 'ADMIN')
+										if (row.quantity < 1) {
+											str += '<a style="color:red"><i class="fas fa-shopping-cart"></i></a>';
+										} else {
 											str += '<a href="'
 													+ window.contextRoot
-													+ '/manage/'
+													+ '/cart/add/'
 													+ data
-													+ '/product"><i class="fas fa-pencil-alt"></i></a>';
-										else
-											str += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add/'
-												+ data
-												+ '/product"><i class="fas fa-shopping-cart"></i></a>';
+													+ '/product"><i class="fas fa-shopping-cart"></i></a>';
+										}
 									}
 									return str;
 								}

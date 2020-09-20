@@ -73,7 +73,7 @@
 							</security:authorize>
 							
 							<li>
-								<a class="dropdown-item" href="${contextRoot}/logout">
+								<a class="dropdown-item" href="${contextRoot}/perform-logout">
 									<i class="fas fa-sign-out-alt"></i> sign-out
 								</a>
 							</li> 
