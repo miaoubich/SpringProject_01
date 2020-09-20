@@ -24,20 +24,19 @@ $(function() {
 				"background", "#cce6ff");
 		break;
 	}
-	
-	//add border for logged user
+
+	// add border for logged user
 	var $loggedUser = $("#dropdownMenu1");
-	if($loggedUser.length){
-		$loggedUser.hover(
-				function(){
-					$(this).addClass('active').css({
-						'border' : '1px solid #fff'
-					}).css('border-radius', '5px');
-				}, function(){
-					$(this).addClass('').css({
-						'border' : '0px solid #000'
-					});
-				});
+	if ($loggedUser.length) {
+		$loggedUser.hover(function() {
+			$(this).addClass('active').css({
+				'border' : '1px solid #fff'
+			}).css('border-radius', '5px');
+		}, function() {
+			$(this).addClass('').css({
+				'border' : '0px solid #000'
+			});
+		});
 	}
 
 	/*
@@ -57,44 +56,42 @@ $(function() {
 					required : true
 				}
 			},
-			
+
 			messages : {
 				name : {
-					required: 'Category dname is mandatory!',
-					minlength: 'Name should not be less than 3 characters!'
+					required : 'Category dname is mandatory!',
+					minlength : 'Name should not be less than 3 characters!'
 				},
-				description: {
-					required: 'Description for the category is Mandatory!'
+				description : {
+					required : 'Description for the category is Mandatory!'
 				}
 			},
-			
-			errorElement: 'em',
-			errorPlacement: function(error, element){
-				//adding the class help-block
+
+			errorElement : 'em',
+			errorPlacement : function(error, element) {
+				// adding the class help-block
 				error.addClass('help-block');
-				//place the error element after the input and textarea fields
+				// place the error element after the input and textarea fields
 				error.insertAfter(element);
 			}
-		
 
 		});
 
 	}
 
-	//to tackle the csrf token
+	// to tackle the csrf token
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
-	
-	//xht means xmlHttpRequest
-	if(token.length > 0 && header.length > 0){
-		
-		//set the token header for ajax request
-		$(document).ajaxSend(function(e, xhr, options){
-			xhl.setRequestHeader(header, token);
+
+	// xht means xmlHttpRequest
+	if (token.length > 0 && header.length > 0) {
+
+		// set the token header for ajax request
+		$(document).ajaxSend(function(e, xhr, options) {
+			xhr.setRequestHeader(header, token);
 		});
 	}
-	
-	
+
 	// code for jquery table
 	var $table = $('#productListTable');
 	// EXECUTE THE BELLOW CODE ONLY WHEN WE HAVE THIS TABLE
@@ -164,7 +161,15 @@ $(function() {
 									if (row.quantity < 1) {
 										str += '<a style="color:red"><i class="fas fa-shopping-cart"></i></a>';
 									} else {
-										str += '<a href="'
+
+										if (userRole == 'ADMIN')
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/manage/'
+													+ data
+													+ '/product"><i class="fas fa-pencil-alt"></i></a>';
+										else
+											str += '<a href="'
 												+ window.contextRoot
 												+ '/cart/add/'
 												+ data
@@ -360,13 +365,13 @@ $(function() {
 															if (confirmed) {
 																console
 																		.log(value);// value:
-																					// will
-																					// be
-																					// the
-																					// id
-																					// of
-																					// the
-																					// product
+																// will
+																// be
+																// the
+																// id
+																// of
+																// the
+																// product
 
 																var activationUrl = window.contextRoot
 																		+ '/manage/product/'
@@ -405,12 +410,10 @@ $(function() {
 
 				});
 	}
-	
-	
-	/**********************************
-	 * Validation for login form      *
-	 *                                *
-	 * ********************************/
+
+	/***************************************************************************
+	 * Validation for login form * *
+	 **************************************************************************/
 	var $loginForm = $("#loginForm");
 	if ($loginForm.length) {
 
@@ -425,25 +428,24 @@ $(function() {
 					required : true
 				}
 			},
-			
+
 			messages : {
 				username : {
-					required: 'Mandatory field',
-					email: 'Email address is not valid!'
+					required : 'Mandatory field',
+					email : 'Email address is not valid!'
 				},
-				password: {
-					required: 'Mandatory field'
+				password : {
+					required : 'Mandatory field'
 				}
 			},
-			
-			errorElement: 'em',
-			errorPlacement: function(error, element){
-				//adding the class help-block
+
+			errorElement : 'em',
+			errorPlacement : function(error, element) {
+				// adding the class help-block
 				error.addClass('help-block');
-				//place the error element after the input and textarea fields
+				// place the error element after the input and textarea fields
 				error.insertAfter(element);
 			}
-		
 
 		});
 

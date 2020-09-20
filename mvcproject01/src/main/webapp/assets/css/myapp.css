@@ -55,3 +55,12 @@ input:checked + .slider{background-color:#1863E6;}
 input:checked + .slider:before{transform:translateX(20px);}
 
 
+/* dropdown separator */
+.divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+

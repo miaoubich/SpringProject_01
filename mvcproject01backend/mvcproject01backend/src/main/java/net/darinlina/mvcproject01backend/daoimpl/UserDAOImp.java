@@ -77,7 +77,7 @@ public class UserDAOImp implements UserDAO {
 					.setParameter("user", user).setParameter("billing", true)
 					.getSingleResult();
 		} catch (Exception e) {
-			logger.error("getBillingAddress", e.getMessage());
+//			logger.error("getBillingAddress", e.getMessage());
 			return null;
 		}
 	}
