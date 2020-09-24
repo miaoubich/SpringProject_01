@@ -39,9 +39,9 @@ public class User implements Serializable{
 	private String password;
 	private boolean enabled = true;
 	// user_detailed is the parent table and the cart table is child
-	// and the mappedBy "user" is defined on cart class
+	// the mappedBy "user" is defined on cart class
 	 // cascadeType.All is to add all the children table of the parent table User
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Cart cart;
 
 	public String getConfirmPassword() {

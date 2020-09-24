@@ -46,17 +46,6 @@ public class UserDAOImp implements UserDAO {
 	}
 
 	@Override
-	public boolean updateCart(Cart cart) {
-		try {
-			sessionFactory.getCurrentSession().update(cart);
-			return true;
-		} catch (Exception e) {
-			logger.error("addCart: ", e);
-			return false;
-		}
-	}
-
-	@Override
 	public User getByEmail(String email) {
 		String selectQuery = "FROM User WHERE email = :email";
 		try {

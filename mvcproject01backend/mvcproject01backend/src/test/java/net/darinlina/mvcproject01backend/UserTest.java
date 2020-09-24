@@ -62,7 +62,7 @@ public class UserTest {
 		cart.setCartLines(3);
 		cart.setGrandTotal(2222);
 
-		assertTrue(userDAO.updateCart(cart));
+//		assertTrue(userDAO.updateCart(cart));
 	}
 
 //	@Test
