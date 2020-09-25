@@ -37,7 +37,7 @@ public class CartLineTest {
 		cartLineDAO = (CartLineDAO) context.getBean("cartLineDAO");
 	}
 	
-	@Test
+//	@Test
 	public void addNewCartLineTest() {
 		
 		//get the user
@@ -66,5 +66,25 @@ public class CartLineTest {
 		cart.setCartLines(cart.getCartLines() + 1);
 		
 		assertTrue(cartLineDAO.updateCart(cart));
+	}
+	
+	@Test
+	public void testUpdateCartLine() {
+
+		// fetch the user and then cart of that user
+		User user = userDAO.getByEmail("mustafa@home.com");		
+		Cart cart = user.getCart();
+				
+		cartLine = cartLineDAO.getByCartAndProduct(cart.getId(), 1);
+		
+		cartLine.setProductCount(cartLine.getProductCount() + 1);
+				
+		double oldTotal = cartLine.getTotal();
+				
+		cartLine.setTotal(cartLine.getProduct().getUnitPrice() * cartLine.getProductCount());
+		
+		cart.setGrandTotal(cart.getGrandTotal() + (cartLine.getTotal() - oldTotal));
+		
+		assertTrue(cartLineDAO.update(cartLine));	
 	}
 }
