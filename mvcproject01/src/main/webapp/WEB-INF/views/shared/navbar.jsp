@@ -63,7 +63,7 @@
 						<ul class="dropdown-menu">
 							<security:authorize access="hasAuthority('USER')">
 								<li>
-									<a class="dropdown-item" href="${contextRoot}/cart">
+									<a class="dropdown-item" href="${contextRoot}/cart/show">
 										<i class="fas fa-shopping-basket"></i>
 										<span class="badge">${userModel.cart.cartLines}</span>
 										- &euro; ${userModel.cart.grandTotal}

@@ -35,7 +35,7 @@
  	crossorigin="anonymous"> --%>
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap fontawesome css -->
-<link href="${css}/all.css" rel="stylesheet">
+<link href="${css}/fontAwesom_5.12.1.css" rel="stylesheet">
 <!-- bootstrap css theme -->
 <link href="${css}/bootstrap.cerulean.theme.css" rel="stylesheet">
 <!-- Bootstrap table css -->
@@ -86,6 +86,10 @@
 				<%@include file="manageProducts.jsp"%>
 			</c:if>
 
+			<!-- Load a cart page -->
+			<c:if test="${userClickShowCart == true}">
+				<%@include file="cart.jsp"%>
+			</c:if>
 		</div>
 
 		<!-- Footer -->
