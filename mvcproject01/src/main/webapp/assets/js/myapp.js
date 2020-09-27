@@ -23,6 +23,13 @@ $(function() {
 		$('#a_' + menu).addClass('active').css("color", "black").css(
 				"background", "#cce6ff");
 		break;
+	case 'User Cart':
+		$('#dropdownMenu1').addClass('active').css({
+			'border' : '1px solid #fff'
+		}).css('border-radius', '5px');
+		$('#a_' + menu).addClass('active').css("color", "black").css(
+				"background", "#cce6ff");
+		break;
 	}
 
 	// add border for logged user

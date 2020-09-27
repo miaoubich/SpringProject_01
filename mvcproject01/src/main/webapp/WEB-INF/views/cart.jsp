@@ -5,6 +5,7 @@
 		<c:when test="${not empty cartLines}">
 
 			<table id="cart" class="table table-hover table-condensed">
+
 				<thead>
 					<tr>
 						<th style="width: 50%">Product</th>
@@ -14,64 +15,71 @@
 						<th style="width: 10%"></th>
 					</tr>
 				</thead>
+
 				<tbody>
-					<tr>
-						<td data-th="Product">
-							<div class="row">
-								<div class="col-sm-2 hidden-xs">
-									<img src="http://placehold.it/100x100" alt="..."
-										class="img-responsive" />
+					<c:forEach items="${cartLines}" var="cartLine">
+						<tr>
+							<td data-th="Product">
+								<div class="row">
+									<div class="col-sm-2 hidden-xs">
+										<img src="${images}/${cartLine.product.code}.jpg" alt="${cartLine.product.name}" class="img-responsive img-Cart" />
+									</div>
+									<div class="col-sm-10">
+										<h4 class="nomargin" style="padding-left: 20px">${cartLine.product.name}
+											<c:if test="${cartline.available == false}">
+												<strong>(Not Available)</strong>
+											</c:if>
+										</h4>
+										<p style="padding-left: 20px">${cartLine.product.brand}</p>
+										<p style="padding-left: 20px">${cartLine.product.description}</p>
+									</div>
 								</div>
-								<div class="col-sm-10">
-									<h4 class="nomargin" style="padding-left: 20px">Product 1</h4>
-									<p style="padding-left: 20px">Quis aute iure reprehenderit
-										in voluptate velit esse cillum dolore eu fugiat nulla
-										pariatur. Lorem ipsum dolor sit amet.</p>
-								</div>
-							</div>
-						</td>
-						<td data-th="Price">$1.99</td>
-						<td data-th="Quantity"><input type="number"
-							class="form-control text-center" value="1"></td>
-						<td data-th="Subtotal" class="text-center">1.99</td>
-						<td class="actions" data-th="">
-							<button class="btn btn-info btn-sm">
-								<i class="fa fa-sync-alt"></i>
-							</button>
-							<button class="btn btn-danger btn-sm">
-								<i class="fa fa-trash-alt"></i>
-							</button>
-						</td>
-					</tr>
+							</td>
+							<td data-th="Price">&euro; ${cartLine.buyingPrice}</td>
+							<td data-th="Quantity"><input type="number"
+								class="form-control text-center" value="${cartLine.productCount}"></td>
+							<td data-th="Subtotal" class="text-center">&euro; ${cartLine.total}</td>
+							<td class="actions" data-th="">
+								<button class="btn btn-info btn-sm">
+									<i class="fa fa-sync-alt"></i>
+								</button>
+								<button class="btn btn-danger btn-sm">
+									<i class="fa fa-trash-alt"></i>
+								</button>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
+				
 				<tfoot>
 					<tr class="visible-xs">
-						<td class="text-center"><strong>Total 1.99</strong></td>
+						<td class="text-center"><strong>Total: &euro; ${userModel.cart.grandTotal}</strong></td>
 					</tr>
 					<tr>
 						<td><a href="#" class="btn btn-warning"><i
 								class="fa fa-angle-left"></i> Continue Shopping</a></td>
 						<td colspan="2" class="hidden-xs"></td>
-						<td class="hidden-xs text-center"><strong>Total
-								$1.99</strong></td>
+						<td class="hidden-xs text-center"><strong>Total: &euro; ${userModel.cart.grandTotal}</strong></td>
 						<td><a href="#" class="btn btn-success btn-block">Checkout
 								<i class="fa fa-angle-right"></i>
 						</a></td>
 					</tr>
 				</tfoot>
+				
 			</table>
 
 		</c:when>
 		<c:otherwise>
-		
-			<div class="jumbotron">
-				<div class="text-center">
-					<img src="${images}/empty_cart.jpg" class="emptyCartImg" alt="Empty Cart !" />
-					<p style="color:black">Your Shopping Cart is empty</p>
-				</div>
+
+			<!-- 			<div class="jumbotron"> -->
+			<div class="text-center" style="padding-top: 100px">
+				<img src="${images}/empty_cart.jpg" class="emptyCartImg"
+					alt="Empty Cart !" />
+				<h2 style="color: black">Your Shopping Cart is empty</h2>
 			</div>
-		
+			<!-- 			</div> -->
+
 		</c:otherwise>
-		
+
 	</c:choose>
 </div>

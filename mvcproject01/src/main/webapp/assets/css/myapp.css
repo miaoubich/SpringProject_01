@@ -104,5 +104,5 @@ input:checked + .slider:before{transform:translateX(20px);}
 	table#cart tfoot td .btn{display:block;}
 	
 }
-
-.emptyCartImg{width:220px; height:210px; padding-bottom:30px;}
+.img-Cart{width: 100px; height: 100px;}
+.emptyCartImg{width:250px; height:250px; padding-bottom:30px;}

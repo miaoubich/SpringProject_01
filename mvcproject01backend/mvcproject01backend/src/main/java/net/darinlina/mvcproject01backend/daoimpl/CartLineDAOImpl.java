@@ -15,12 +15,12 @@ import net.darinline.mvcproject01backend.dto.CartLine;
 
 @Repository("cartLineDAO")
 @Transactional
-public class CartLineDAOImpli implements CartLineDAO {
+public class CartLineDAOImpl implements CartLineDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	private static final Logger logger = LoggerFactory.getLogger(CartLineDAOImpli.class);
+	private static final Logger logger = LoggerFactory.getLogger(CartLineDAOImpl.class);
 
 	@Override
 	public CartLine get(int id) {
