@@ -11,6 +11,7 @@ import net.darinlina.mvcproject01.model.UserModel;
 import net.darinlina.mvcproject01backend.dao.CartLineDAO;
 import net.darinline.mvcproject01backend.dto.Cart;
 import net.darinline.mvcproject01backend.dto.CartLine;
+import net.darinline.mvcproject01backend.dto.Product;
 
 @Service("cartServices")
 public class CartService {
@@ -30,5 +31,28 @@ public class CartService {
 	public List<CartLine> getCartLines(){
 		Cart cart = this.getCart();
 		return cartLineDAO.list(cart.getId());
+	}
+
+	public String updateCartLine(int cartLineId, int count) {
+			//fetch the cart line
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		
+		if(cartLine == null) {
+			return "result=error";
+		}else {
+			Product product = cartLine.getProduct();
+			double oldTotal = cartLine.getTotal();
+			
+			cartLine.setProductCount(count);
+			cartLine.setBuyingPrice(product.getUnitPrice());
+			cartLine.setTotal(product.getUnitPrice() * count);
+			cartLineDAO.update(cartLine);
+			
+			Cart cart = this.getCart();
+			cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
+			cartLineDAO.updateCart(cart);
+			
+			return "result=updated";
+		}
 	}
 }

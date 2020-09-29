@@ -504,7 +504,7 @@ $(function() {
 							} else {
 								var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + currentCount;
 								//forward it to the controller
-								window.contextRoot.href = updateUrl;
+								window.location.href = updateUrl;
 							}
 
 						}
