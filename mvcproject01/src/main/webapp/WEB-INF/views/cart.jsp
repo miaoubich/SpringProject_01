@@ -36,11 +36,12 @@
 								</div>
 							</td>
 							<td data-th="Price">&euro; ${cartLine.buyingPrice}</td>
-							<td data-th="Quantity"><input type="number"
-								class="form-control text-center" value="${cartLine.productCount}"></td>
+							<td data-th="Quantity">
+								<input type="number" id="count_${cartLine.id}" min="1" max="${cartLine.product.quantity}" class="form-control text-center" value="${cartLine.productCount}">
+							</td>
 							<td data-th="Subtotal" class="text-center">&euro; ${cartLine.total}</td>
 							<td class="actions" data-th="">
-								<button class="btn btn-info btn-sm">
+								<button type="button" name="refreshCart" value="${cartLine.id}" class="btn btn-info btn-sm">
 									<i class="fa fa-sync-alt"></i>
 								</button>
 								<button class="btn btn-danger btn-sm">

@@ -457,4 +457,58 @@ $(function() {
 		});
 
 	}
+
+	/*
+	 * Handling the refresh cart button
+	 */
+	$('button[name="refreshCart"]')
+			.click(
+					function() {
+
+						// fetch the cartLine id
+						var cartLineId = $(this).attr('value');
+						var countElement = $('#count_' + cartLineId);
+
+						var originalCount = countElement.attr('value');
+						var currentCount = countElement.val();
+
+						var maxVal = countElement.attr('max');
+
+						// work only when the count is changed
+						if (originalCount !== currentCount) {
+
+							console.log("Original count: " + originalCount);
+							console.log("Current count: " + currentCount);
+							console.log("Max value: " + maxVal);
+
+							var errorMsg = null;
+							var sizeMsg = null;
+
+							if (currentCount < 1) {
+								errorMsg = "Please select at least one item.";
+								sizeMsg = 'medium';
+							} else if (currentCount > maxVal) {
+								errorMsg = "Due to the current store shortage in this specific item, the maximum available count is limitted to: "
+										+ maxVal + " items.";
+								sizeMsg = 'large';
+							}
+
+							if (currentCount < 1 || currentCount > maxVal) {
+								// reverting back to the original count
+								countElement.val(originalCount);
+								bootbox.alert({
+									size : sizeMsg,
+									title : 'Error!',
+									message : errorMsg
+								});
+							} else {
+								var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + currentCount;
+								//forward it to the controller
+								window.contextRoot.href = updateUrl;
+							}
+
+						}
+
+					});
+
 });
