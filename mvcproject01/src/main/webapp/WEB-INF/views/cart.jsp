@@ -3,9 +3,7 @@
 
 	<c:if test="${not empty message}">
 		<div class="alert alert-info">
-			<h3 class="text-center">
-				${message}
-			</h3>
+			<h3 class="text-center">${message}</h3>
 		</div>
 	</c:if>
 	<c:choose>
@@ -56,10 +54,9 @@
 								<button type="button" name="refreshCart" value="${cartLine.id}"
 									class="btn btn-info btn-sm">
 									<i class="fa fa-sync-alt"></i>
-								</button>
-								<button class="btn btn-danger btn-sm">
-									<i class="fa fa-trash-alt"></i>
-								</button>
+								</button> <a href="${contextRoot}/cart/${cartLine.id}/delete"
+								class="btn btn-danger btn-sm"> <i class="fa fa-trash-alt"></i>
+							</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -55,4 +55,24 @@ public class CartService {
 			return "result=updated";
 		}
 	}
+
+	public String deleteCartLine(int cartLineId) {
+		//fetch the cartLine by its id
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		
+		if(cartLine == null)
+			return "result=error";
+		else {
+			//update the cart
+			Cart cart = this.getCart();
+			cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
+			cart.setCartLines(cart.getCartLines() - 1);
+			cartLineDAO.updateCart(cart);
+			
+			//remove the specific cartLine
+			cartLineDAO.delete(cartLine);
+			
+			return "result=deleted";	
+		}
+	}
 }
