@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import net.darinlina.mvcproject01.model.UserModel;
 import net.darinlina.mvcproject01backend.dao.CartLineDAO;
+import net.darinlina.mvcproject01backend.dao.ProductDAO;
 import net.darinline.mvcproject01backend.dto.Cart;
 import net.darinline.mvcproject01backend.dto.CartLine;
 import net.darinline.mvcproject01backend.dto.Product;
@@ -18,61 +19,96 @@ public class CartService {
 
 	@Autowired
 	private CartLineDAO cartLineDAO;
-	
+	@Autowired
+	private ProductDAO productDAO;
 	@Autowired
 	private HttpSession session;
-	
-	//return the logged in current user
+
+	// return the logged in current user
 	private Cart getCart() {
-		return ((UserModel)session.getAttribute("userModel")).getCart();
+		return ((UserModel) session.getAttribute("userModel")).getCart();
 	}
-	
-	//return the entire cart Lines
-	public List<CartLine> getCartLines(){
+
+	// return the entire cart Lines
+	public List<CartLine> getCartLines() {
 		Cart cart = this.getCart();
 		return cartLineDAO.list(cart.getId());
 	}
 
 	public String updateCartLine(int cartLineId, int count) {
-			//fetch the cart line
+		// fetch the cart line
 		CartLine cartLine = cartLineDAO.get(cartLineId);
-		
-		if(cartLine == null) {
+
+		if (cartLine == null) {
 			return "result=error";
-		}else {
+		} else {
 			Product product = cartLine.getProduct();
 			double oldTotal = cartLine.getTotal();
-			
+
 			cartLine.setProductCount(count);
 			cartLine.setBuyingPrice(product.getUnitPrice());
 			cartLine.setTotal(product.getUnitPrice() * count);
 			cartLineDAO.update(cartLine);
-			
+
 			Cart cart = this.getCart();
 			cart.setGrandTotal(cart.getGrandTotal() - oldTotal + cartLine.getTotal());
 			cartLineDAO.updateCart(cart);
-			
+
 			return "result=updated";
 		}
 	}
 
+	public String addCartLine(int productId) {
+
+		String response = null;
+
+		Cart cart = this.getCart();
+		CartLine cartLine = cartLineDAO.getByCartAndProduct(cart.getId(), productId);
+
+		if (cartLine == null) {
+			// add a new cartLine
+			cartLine = new CartLine();
+
+			// fetch the product
+			Product product = productDAO.get(productId);
+
+			cartLine.setCartId(cart.getId());
+			cartLine.setProduct(product);
+			cartLine.setBuyingPrice(product.getUnitPrice());
+			cartLine.setProductCount(1);// since its the 1st product to add in a new cartLine
+			cartLine.setTotal(product.getUnitPrice());
+			cartLine.setAvailable(true);
+
+			cartLineDAO.add(cartLine);
+			
+			//update the cart also
+			cart.setCartLines(cart.getCartLines() + 1);
+			cart.setGrandTotal(cart.getGrandTotal() + cartLine.getTotal());
+			cartLineDAO.updateCart(cart);
+			response = "result=added";
+		}
+
+		return response;
+	}
+
 	public String deleteCartLine(int cartLineId) {
-		//fetch the cartLine by its id
+		// fetch the cartLine by its id
 		CartLine cartLine = cartLineDAO.get(cartLineId);
-		
-		if(cartLine == null)
+
+		if (cartLine == null)
 			return "result=error";
 		else {
-			//update the cart
+			// update the cart
 			Cart cart = this.getCart();
 			cart.setGrandTotal(cart.getGrandTotal() - cartLine.getTotal());
 			cart.setCartLines(cart.getCartLines() - 1);
 			cartLineDAO.updateCart(cart);
-			
-			//remove the specific cartLine
+
+			// remove the specific cartLine
 			cartLineDAO.delete(cartLine);
-			
-			return "result=deleted";	
+
+			return "result=deleted";
 		}
 	}
+
 }
