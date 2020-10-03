@@ -29,11 +29,17 @@ public class CartController {
 		case "updated":
 			mv.addObject("message", "Your CartLine has been successfully updated !");
 			break;
+		case "delete":
+			mv.addObject("message", "Carte Line has been removed !");
+		case "maximum":
+			mv.addObject("message", "You have reached the maximum count of this product !");
+			break;
+		case "unavailable":
+			mv.addObject("message", "Sorry we have a shortage in this Item, please try another one !");
+			break;
 		case "error":
 			mv.addObject("message", "Sorry we can't update yur CartLine, something went wrong !");
 			break;
-		case "delete":
-			mv.addObject("message", "Carte Line has been removed !");
 		}
 	}
 	
