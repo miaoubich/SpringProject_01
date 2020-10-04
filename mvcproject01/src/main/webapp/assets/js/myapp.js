@@ -487,13 +487,14 @@ $(function() {
 							if (currentCount < 1) {
 								errorMsg = "Please select at least one item.";
 								sizeMsg = 'medium';
-							} else if (currentCount > maxVal) {
-								errorMsg = "Due to the current store shortage in this specific item, the maximum available count is limitted to: "
-										+ maxVal + " items.";
-								sizeMsg = 'large';
-							}
+							} 
+//							else if (currentCount > maxVal) {
+//								errorMsg = "Due to the current store shortage in this specific item, the maximum available count is limitted to: "
+//										+ maxVal + " items.";
+//								sizeMsg = 'large';
+//							}
 
-							if (currentCount < 1 || currentCount > maxVal) {
+							if (currentCount < 1){ //} || currentCount > maxVal) {
 								// reverting back to the original count
 								countElement.val(originalCount);
 								bootbox.alert({
